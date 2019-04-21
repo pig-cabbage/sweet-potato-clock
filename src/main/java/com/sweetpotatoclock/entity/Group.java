@@ -20,7 +20,7 @@ public class Group implements Serializable {
      *
      * @mbg.generated
      */
-    private Integer captainId;
+    private String captainId;
 
     /**
      *
@@ -125,7 +125,7 @@ public class Group implements Serializable {
      *
      * @mbg.generated
      */
-    public Integer getCaptainId() {
+    public String getCaptainId() {
         return captainId;
     }
 
@@ -137,8 +137,8 @@ public class Group implements Serializable {
      *
      * @mbg.generated
      */
-    public void setCaptainId(Integer captainId) {
-        this.captainId = captainId;
+    public void setCaptainId(String captainId) {
+        this.captainId = captainId == null ? null : captainId.trim();
     }
 
     /**
