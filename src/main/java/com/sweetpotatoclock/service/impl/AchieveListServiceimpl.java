@@ -14,6 +14,7 @@ import java.util.List;
 public class AchieveListServiceimpl implements AchieveListService {
     @Autowired
     private AchieveListMapper achieveListMapper;
+    @Autowired
     private AchieveInfoMapper achieveInfoMapper;
 
     @Override
