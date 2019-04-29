@@ -32,11 +32,12 @@ public class UserInformationMapperTest {
     }
 
     @Test
-    @Ignore
     public void selectByPrimaryKey() {
-
+        UserInformation userInformation = userInformationMapper.selectByPrimaryKey("1");
+        System.out.print(userInformation.toString());
     }
 
+    @Ignore
     @Test
     public void selectAll() {
         List<UserInformation> userInformationList = userInformationMapper.selectAll();
@@ -46,5 +47,9 @@ public class UserInformationMapperTest {
     @Test
     @Ignore
     public void updateByPrimaryKey() {
+    }
+
+    @Test
+    public void selectByPrimaryKey1() {
     }
 }

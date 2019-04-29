@@ -15,8 +15,8 @@ public class UserInformationServiceimpl implements UserInformationService {
 
 
     @Override
-    public UserInformation getUserInformationByUserId(String userID) {
-        return userInformationMapper.selectByPrimaryKey(userID);
+    public UserInformation getUserInformationByUserId(String userId) {
+        return userInformationMapper.selectByPrimaryKey(userId);
     }
 
 

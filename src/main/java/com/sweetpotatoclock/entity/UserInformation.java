@@ -214,6 +214,7 @@ public class UserInformation implements Serializable {
         sb.append(", daysSum=").append(daysSum);
         sb.append(", minutesSum=").append(minutesSum);
         sb.append(", continueDays=").append(continueDays);
+        sb.append(", motto=").append(motto);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

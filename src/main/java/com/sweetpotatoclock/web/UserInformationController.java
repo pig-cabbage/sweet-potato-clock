@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -22,12 +23,13 @@ public class UserInformationController {
      *
      * @return
      */
-    @RequestMapping(value = "/getuserinformationbyuserid", method = RequestMethod.GET)
-    private Map<String, Object> getUserInformationById(String userId) {
-        Map<String, Object> modelMap = new HashMap<String, Object>();
+    @RequestMapping(value="/getuserinformationbyuserid")
+    public Map<String,Object> getUserInformationById (String userId){
+        Map<String,Object>modelMap=new HashMap<String,Object>();
         //获取个人信息
-        UserInformation userInformation = userinformationService.getUserInformationByUserId(userId);
-        modelMap.put("userinformation", userInformation);
+        UserInformation userInformation =userinformationService.getUserInformationByUserId(userId);
+        modelMap.put("userinformation",userInformation);
         return modelMap;
     }
+
 }
