@@ -16,19 +16,19 @@ public class RanInGroupServiceimpl implements RankInGroupService {
     @Autowired
     private RankInGroupMapper rankInGroupMapper;
 
-    private List<RankInGroup>list=new ArrayList<>();
+    private List<RankInGroup> list = new ArrayList<>();
 
     @Override
-    public void   getRankInGroupListByGroupId(Integer groupId){
-        list= rankInGroupMapper.selectListByGroupId(groupId);
+    public void getRankInGroupListByGroupId(Integer groupId) {
+        list = rankInGroupMapper.selectListByGroupId(groupId);
 
     }
 
     @Override
-    public void rankByDayMinutes(){
-        Collections.sort(list, new Comparator<RankInGroup>(){
+    public void rankByDayMinutes() {
+        Collections.sort(list, new Comparator<RankInGroup>() {
             @Override
-            public int compare(RankInGroup t1,RankInGroup t2){
+            public int compare(RankInGroup t1, RankInGroup t2) {
                 return t2.getDayMinutes().compareTo(t1.getDayMinutes());
             }
         });
@@ -36,15 +36,16 @@ public class RanInGroupServiceimpl implements RankInGroupService {
     }
 
     @Override
-    public void rankByWeekMinutes(){
-        Collections.sort(list, new Comparator<RankInGroup>(){
+    public void rankByWeekMinutes() {
+        Collections.sort(list, new Comparator<RankInGroup>() {
             @Override
-            public int compare(RankInGroup t1,RankInGroup t2){
+            public int compare(RankInGroup t1, RankInGroup t2) {
                 return t2.getWeekMinutes().compareTo(t1.getWeekMinutes());
             }
         });
     }
-    public List<RankInGroup> getList(){
+
+    public List<RankInGroup> getList() {
         return list;
     }
 }

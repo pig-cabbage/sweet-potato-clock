@@ -4,8 +4,11 @@ import com.sweetpotatoclock.entity.UserInformation;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -36,8 +39,8 @@ public class UserInformationMapperTest {
 
     @Test
     public void selectAll() {
-        List<UserInformation> userInformationList= userInformationMapper.selectAll();
-        assertEquals(1,userInformationList.size());
+        List<UserInformation> userInformationList = userInformationMapper.selectAll();
+        assertEquals(1, userInformationList.size());
     }
 
     @Test

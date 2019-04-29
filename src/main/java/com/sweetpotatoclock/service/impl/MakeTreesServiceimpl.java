@@ -13,7 +13,7 @@ public class MakeTreesServiceimpl implements MakeTreesService {
     private MakeTreesMapper makeTreesMapper;
 
     @Override
-    public MakeTrees getMakeTreesByUserId(String userId){
+    public MakeTrees getMakeTreesByUserId(String userId) {
         return makeTreesMapper.selectByPrimaryKey(userId);
     }
 }

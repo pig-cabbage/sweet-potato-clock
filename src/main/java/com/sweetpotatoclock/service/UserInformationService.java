@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface UserInformationService {
 
-/**
- * 通过userID获取用户信息
- *
- * @return
- */
-UserInformation getUserInformationByUserId(String userID);
+    /**
+     * 通过userID获取用户信息
+     *
+     * @return
+     */
+    UserInformation getUserInformationByUserId(String userID);
 
 
 }
