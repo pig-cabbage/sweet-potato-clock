@@ -20,8 +20,8 @@ public class UserInformationControllerTest {
     @Autowired
     private UserInformationController userInformationController;
     @Test
-    public void getUserInformationById() {
-        Map<String,Object> map= userInformationController.getUserInformationById("1");
+    public void getUserInformationByUserId() {
+        Map<String,Object> map= userInformationController.getUserInformationByUserId("1");
         assertEquals(1,map.size());
         System.out.print(map.values().toString());
     }
