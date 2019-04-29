@@ -23,13 +23,13 @@ public class GoalDayCompleteController {
      *
      * @return
      */
-    @RequestMapping(value = "/getgoaldaycompletelistbyuserid",method = RequestMethod.GET)
-    private Map<String, Object>getgoaldatecompletelistbyuserid(String userId){
-        Map<String,Object>modelMap=new HashMap<String,Object>();
-        List<GoalDayComplete> list=new ArrayList<>();
+    @RequestMapping(value = "/getgoaldaycompletelistbyuserid", method = RequestMethod.GET)
+    private Map<String, Object> getgoaldatecompletelistbyuserid(String userId) {
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+        List<GoalDayComplete> list = new ArrayList<>();
         //获取得到的列表
-        list=goalDayCompleteService.getGoalDayCompleteByUserId(userId);
-        modelMap.put("goaldaycompletelist",list);
+        list = goalDayCompleteService.getGoalDayCompleteByUserId(userId);
+        modelMap.put("goaldaycompletelist", list);
         return modelMap;
     }
 }

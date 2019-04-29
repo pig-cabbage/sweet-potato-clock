@@ -13,7 +13,7 @@ public class UserInformationServiceimpl implements UserInformationService {
 
 
     @Override
-    public UserInformation getUserInformationByUserId(String userID){
+    public UserInformation getUserInformationByUserId(String userID) {
         return userInformationMapper.selectByPrimaryKey(userID);
     }
 }

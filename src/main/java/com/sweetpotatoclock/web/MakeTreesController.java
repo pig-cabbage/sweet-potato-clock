@@ -16,17 +16,18 @@ public class MakeTreesController {
 
     @Autowired
     private MakeTreesService makeTreesService;
+
     /**
      * 通过suerId获取树木页信息
      *
      * @return
      */
-    @RequestMapping(value = "/getmaketreesbyid",method = RequestMethod.GET)
-    private Map<String,Object>getMakeTreesById(String userId){
-        Map<String,Object>modelMap=new HashMap<String,Object>();
+    @RequestMapping(value = "/getmaketreesbyid", method = RequestMethod.GET)
+    private Map<String, Object> getMakeTreesById(String userId) {
+        Map<String, Object> modelMap = new HashMap<String, Object>();
         //获取树木页信息
-        MakeTrees makeTrees=makeTreesService.getMakeTreesByUserId(userId);
-        modelMap.put("makeTrees",makeTrees);
+        MakeTrees makeTrees = makeTreesService.getMakeTreesByUserId(userId);
+        modelMap.put("makeTrees", makeTrees);
         return modelMap;
     }
 

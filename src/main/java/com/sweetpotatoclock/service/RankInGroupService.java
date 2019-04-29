@@ -10,7 +10,7 @@ public interface RankInGroupService {
      *
      * @return
      */
-    void  getRankInGroupListByGroupId(Integer groupId);
+    void getRankInGroupListByGroupId(Integer groupId);
 
     /**
      * 依据每日打卡时长对获取RankInGroup列表进行降序排序

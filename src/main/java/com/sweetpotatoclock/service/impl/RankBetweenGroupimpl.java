@@ -18,33 +18,34 @@ public class RankBetweenGroupimpl implements RankBetweenGroupService {
     @Autowired
     private RankBetweenGroupMapper rankBetweenGroupMapper;
 
-    private List<RankBetweenGroup> list=new ArrayList<>();
+    private List<RankBetweenGroup> list = new ArrayList<>();
 
     @Override
-    public void getRankBetweenGroupList(){
-        list=rankBetweenGroupMapper.selectAll();
+    public void getRankBetweenGroupList() {
+        list = rankBetweenGroupMapper.selectAll();
 
     }
 
     @Override
-    public void rankByDayAverageMinutes(){
-        Collections.sort(list, new Comparator<RankBetweenGroup>(){
+    public void rankByDayAverageMinutes() {
+        Collections.sort(list, new Comparator<RankBetweenGroup>() {
             @Override
-            public int compare(RankBetweenGroup t1,RankBetweenGroup t2){
+            public int compare(RankBetweenGroup t1, RankBetweenGroup t2) {
                 return t2.getDayAverageMinutes().compareTo(t1.getDayAverageMinutes());
             }
         });
     }
-    public void rankByWeekAverageMinutes(){
-        Collections.sort(list, new Comparator<RankBetweenGroup>(){
+
+    public void rankByWeekAverageMinutes() {
+        Collections.sort(list, new Comparator<RankBetweenGroup>() {
             @Override
-            public int compare(RankBetweenGroup t1,RankBetweenGroup t2){
+            public int compare(RankBetweenGroup t1, RankBetweenGroup t2) {
                 return t2.getWeekAverageMinutes().compareTo(t1.getWeekAverageMinutes());
             }
         });
     }
 
-    public List<RankBetweenGroup> getList(){
+    public List<RankBetweenGroup> getList() {
         return list;
     }
 }

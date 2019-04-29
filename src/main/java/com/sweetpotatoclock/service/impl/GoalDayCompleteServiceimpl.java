@@ -14,7 +14,7 @@ public class GoalDayCompleteServiceimpl implements GoalDayCompleteService {
     private GoalDayCompleteMapper goalDayCompleteMapper;
 
     @Override
-    public List<GoalDayComplete> getGoalDayCompleteByUserId(String userId){
+    public List<GoalDayComplete> getGoalDayCompleteByUserId(String userId) {
         return goalDayCompleteMapper.selectByUserId(userId);
     }
 }

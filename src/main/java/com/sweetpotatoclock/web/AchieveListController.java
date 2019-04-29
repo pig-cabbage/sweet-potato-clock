@@ -22,12 +22,12 @@ public class AchieveListController {
      *
      * @return
      */
-    @RequestMapping(value = "/getachievelistbyuserid",method = RequestMethod.GET)
-    private Map<String,Object>getAchieveListByUserId(String userId){
-        Map<String,Object>modelMap=new HashMap<String,Object>();
+    @RequestMapping(value = "/getachievelistbyuserid", method = RequestMethod.GET)
+    private Map<String, Object> getAchieveListByUserId(String userId) {
+        Map<String, Object> modelMap = new HashMap<String, Object>();
         //获取对应用户的成就列表
-        List<String> achieveList=achieveListService.getAchieveListInformationByUserId(userId);
-        modelMap.put("achieveList",achieveList);
+        List<String> achieveList = achieveListService.getAchieveListInformationByUserId(userId);
+        modelMap.put("achieveList", achieveList);
         return modelMap;
     }
 

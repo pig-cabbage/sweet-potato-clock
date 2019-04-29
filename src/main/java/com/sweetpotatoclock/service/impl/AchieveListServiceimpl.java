@@ -18,10 +18,10 @@ public class AchieveListServiceimpl implements AchieveListService {
     private AchieveInfoMapper achieveInfoMapper;
 
     @Override
-    public List<String> getAchieveListInformationByUserId(String userId){
-        List<Integer> list1= achieveListMapper.selectAchieveListByUserId(userId);
-        List<String> list2=new ArrayList<>();
-        for(int i=0;i<list1.size();++i){
+    public List<String> getAchieveListInformationByUserId(String userId) {
+        List<Integer> list1 = achieveListMapper.selectAchieveListByUserId(userId);
+        List<String> list2 = new ArrayList<>();
+        for (int i = 0; i < list1.size(); ++i) {
             list2.add(achieveInfoMapper.selectAchieveNameByAchieveId(list1.get(i)));
         }
         return list2;
