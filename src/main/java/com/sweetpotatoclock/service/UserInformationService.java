@@ -2,6 +2,8 @@ package com.sweetpotatoclock.service;
 
 import com.sweetpotatoclock.entity.UserInformation;
 
+import java.util.List;
+
 public interface UserInformationService {
 
 /**
@@ -10,5 +12,6 @@ public interface UserInformationService {
  * @return
  */
 UserInformation getUserInformationByUserId(String userID);
+
 
 }

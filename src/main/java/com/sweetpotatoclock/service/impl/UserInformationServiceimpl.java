@@ -6,6 +6,8 @@ import com.sweetpotatoclock.service.UserInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserInformationServiceimpl implements UserInformationService {
     @Autowired
@@ -16,4 +18,6 @@ public class UserInformationServiceimpl implements UserInformationService {
     public UserInformation getUserInformationByUserId(String userID){
         return userInformationMapper.selectByPrimaryKey(userID);
     }
+
+
 }
