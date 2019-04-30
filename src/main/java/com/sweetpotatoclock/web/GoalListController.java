@@ -29,7 +29,7 @@ public class GoalListController {
     @RequestMapping("/displaygoal")
     public Map<String, Object> displayGoal (@RequestParam("userid") String userId){
         Map<String,Object> returnMap=new HashMap<>();
-        System.out.print(userId+"\n");
+        //System.out.print(userId+"\n");
         List<GoalComplete> goalList= goalCompleteService.queryGoalByUserId(userId);
         List<Group> groupList = new ArrayList<>();
         for(int i=0;i<goalList.size();i++){

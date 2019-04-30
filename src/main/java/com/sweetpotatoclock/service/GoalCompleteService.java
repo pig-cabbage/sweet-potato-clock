@@ -8,4 +8,6 @@ import java.util.List;
 public interface GoalCompleteService {
 
     List<GoalComplete> queryGoalByUserId(String userId);
+
+    List<GoalComplete> queryGoalByGroupId(Integer groupId);
 }

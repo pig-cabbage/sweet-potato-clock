@@ -34,4 +34,16 @@ public class GoalCompleteServiceImpl implements GoalCompleteService {
         }
         return userGoal;
     }
+
+    @Override
+    public List<GoalComplete> queryGoalByGroupId(Integer groupId) {
+        List<GoalComplete> allGoal= goalCompleteMapper.selectAll();
+        List<GoalComplete> groupGoal = new ArrayList<>();
+        for(int i=0;i<allGoal.size();i++){
+            if(allGoal.get(i).getGroupId().equals(groupId)){
+                groupGoal.add(allGoal.get(i));
+            }
+        }
+        return groupGoal;
+    }
 }

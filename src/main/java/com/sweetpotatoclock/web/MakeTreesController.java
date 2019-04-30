@@ -18,7 +18,7 @@ public class MakeTreesController {
     private MakeTreesService makeTreesService;
 
     /**
-     * 通过suerId获取树木页信息
+     * 通过userId获取树木页信息
      *
      * @return
      */
