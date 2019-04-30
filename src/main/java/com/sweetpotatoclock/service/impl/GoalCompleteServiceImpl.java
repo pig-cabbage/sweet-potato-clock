@@ -28,10 +28,22 @@ public class GoalCompleteServiceImpl implements GoalCompleteService {
         List<GoalComplete> userGoal= new ArrayList<GoalComplete>();
         //从allGoal中找出指定userId的goal信息，包括groupId，complete等
         for(int i=0;i<allGoal.size();i++){
-            if(allGoal.get(i).getUserId()==userId){
+            if(allGoal.get(i).getUserId().equals(userId)){
                 userGoal.add(allGoal.get(i));
             }
         }
         return userGoal;
+    }
+
+    @Override
+    public List<GoalComplete> queryGoalByGroupId(Integer groupId) {
+        List<GoalComplete> allGoal= goalCompleteMapper.selectAll();
+        List<GoalComplete> groupGoal = new ArrayList<>();
+        for(int i=0;i<allGoal.size();i++){
+            if(allGoal.get(i).getGroupId().equals(groupId)){
+                groupGoal.add(allGoal.get(i));
+            }
+        }
+        return groupGoal;
     }
 }

@@ -6,6 +6,7 @@ import com.sweetpotatoclock.service.GoalCompleteService;
 import com.sweetpotatoclock.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -26,8 +27,9 @@ public class GoalListController {
      * @return
      */
     @RequestMapping("/displaygoal")
-    public Map<String, Object> displayGoal (String userId){
+    public Map<String, Object> displayGoal (@RequestParam("userid") String userId){
         Map<String,Object> returnMap=new HashMap<>();
+        //System.out.print(userId+"\n");
         List<GoalComplete> goalList= goalCompleteService.queryGoalByUserId(userId);
         List<Group> groupList = new ArrayList<>();
         for(int i=0;i<goalList.size();i++){
