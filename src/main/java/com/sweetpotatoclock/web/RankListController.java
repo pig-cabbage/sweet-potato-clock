@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +30,7 @@ public class RankListController {
      * @return
      */
     @RequestMapping(value = "/getrankingroupday", method = RequestMethod.GET)
-    private Map<String, Object> getrankingroupday(Integer groupId) {
+    private Map<String, Object> getrankingroupday(@RequestParam("groupid") Integer groupId) {
         Map<String, Object> modelMap = new HashMap<String, Object>();
         List<RankInGroup> list = new ArrayList<>();
         rankInGroupService.getRankInGroupListByGroupId(groupId);
