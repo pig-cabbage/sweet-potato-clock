@@ -35,6 +35,7 @@ public class GoalListController {
             groupList.add(item);
         }
         returnMap.put("groupList",groupList);
+        returnMap.put("goalList",goalList);
         return returnMap;
     }
 
