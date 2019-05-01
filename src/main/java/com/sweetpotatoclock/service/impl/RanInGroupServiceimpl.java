@@ -49,6 +49,7 @@ public class RanInGroupServiceimpl implements RankInGroupService {
         return list;
     }
 
+
     @Override
     public Boolean updateRankInGroup(RankInGroup rankInGroup) {
         try {
@@ -59,5 +60,10 @@ public class RanInGroupServiceimpl implements RankInGroupService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public Integer updateWeekMinutes(RankInGroup rankInGroup) {
+        return null;
     }
 }

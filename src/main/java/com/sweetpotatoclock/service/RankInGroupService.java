@@ -30,4 +30,6 @@ public interface RankInGroupService {
     List<RankInGroup> getList();
 
     Boolean updateRankInGroup(RankInGroup rankInGroup);
+
+    Integer updateWeekMinutes(RankInGroup rankInGroup);
 }

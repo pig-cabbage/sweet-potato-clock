@@ -28,6 +28,8 @@ public class RecordController {
             try {
                 RankInGroup rankInGroup = new RankInGroup();
                 Integer dayMinutes=record.getMinutes();
+                //将对应RankInGroup中的dayMinutes更新
+                rankInGroupService.getRankInGroupListByGroupId(record.getGroupId());
             } catch (Exception e) {
                 e.printStackTrace();
             }
