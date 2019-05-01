@@ -27,4 +27,6 @@ public interface RankBetweenGroupService {
     void rankByWeekAverageMinutes();
 
     List<RankBetweenGroup> getList();
+
+    Boolean updateRankBetweenGroup(RankBetweenGroup rankBetweenGroup);
 }

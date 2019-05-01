@@ -25,7 +25,7 @@ public class GoalDayCompleteController {
      * @return
      */
     @RequestMapping(value = "/getgoaldaycompletelistbyuserid", method = RequestMethod.GET)
-    private Map<String, Object> getgoaldatecompletelistbyuserid(@RequestParam("userid") String userId) {
+    public Map<String, Object> getgoaldatecompletelistbyuserid(@RequestParam("userid") String userId) {
         Map<String, Object> modelMap = new HashMap<String, Object>();
         List<GoalDayComplete> list = new ArrayList<>();
         //获取得到的列表

@@ -48,4 +48,16 @@ public class RankBetweenGroupimpl implements RankBetweenGroupService {
     public List<RankBetweenGroup> getList() {
         return list;
     }
+
+    @Override
+    public Boolean updateRankBetweenGroup(RankBetweenGroup rankBetweenGroup) {
+        try {
+            if(rankBetweenGroupMapper.updateByPrimaryKey(rankBetweenGroup)==1){
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
