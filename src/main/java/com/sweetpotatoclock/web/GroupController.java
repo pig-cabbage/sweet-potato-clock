@@ -5,9 +5,7 @@ import com.sweetpotatoclock.entity.Group;
 import com.sweetpotatoclock.service.GoalCompleteService;
 import com.sweetpotatoclock.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +31,20 @@ public class GroupController {
         List<GoalComplete> goalCompleteList = goalCompleteService.queryGoalByGroupId(groupId);
         result.put("groupInfo",group);
         result.put("groupMember",goalCompleteList);
+        return result;
+    }
+
+    @RequestMapping("findgroupbyconditions")
+    public Map<String,Object> findGroupByConditions(@RequestParam("tag") String tag,@RequestParam("minutes") Integer minutes,@RequestParam("days")Integer days){
+        Map<String,Object> result = new HashMap<>();
+        result.put("groupListByConditions",groupService.getGroupByCondition(tag,minutes,days));
+        return result;
+    }
+
+    @RequestMapping(value = "creategroup",method = RequestMethod.POST)
+    public Map<String,Object> createGroup(@RequestBody Group group){
+        Map<String,Object> result = new HashMap<>();
+        result.put("success",groupService.addGroup(group));
         return result;
     }
 }
