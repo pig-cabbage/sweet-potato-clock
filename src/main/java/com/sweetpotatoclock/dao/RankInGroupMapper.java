@@ -24,4 +24,6 @@ public interface RankInGroupMapper {
     List<RankInGroup> selectAll();
 
     List<RankInGroup> selectListByGroupId(Integer groupId);
+
+    int updateById(RankInGroup record);
 }

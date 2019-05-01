@@ -48,4 +48,22 @@ public class RanInGroupServiceimpl implements RankInGroupService {
     public List<RankInGroup> getList() {
         return list;
     }
+
+
+    @Override
+    public Boolean updateRankInGroup(RankInGroup rankInGroup) {
+        try {
+            if(rankInGroupMapper.updateById(rankInGroup)==1){
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public Integer updateWeekMinutes(RankInGroup rankInGroup) {
+        return null;
+    }
 }
