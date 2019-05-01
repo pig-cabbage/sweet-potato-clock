@@ -1,15 +1,16 @@
 package com.sweetpotatoclock.web;
 
+import com.sweetpotatoclock.entity.Group;
+import com.sweetpotatoclock.entity.RankBetweenGroup;
 import com.sweetpotatoclock.entity.RankInGroup;
 import com.sweetpotatoclock.entity.Record;
-import com.sweetpotatoclock.service.RankBetweenGroupService;
-import com.sweetpotatoclock.service.RankInGroupService;
-import com.sweetpotatoclock.service.RecordService;
+import com.sweetpotatoclock.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -21,19 +22,39 @@ public class RecordController {
     private RankInGroupService rankInGroupService;
     @Autowired
     private RankBetweenGroupService rankBetweenGroupService;
+    @Autowired
+    private ComputeRankBetweenGroupService computeRankBetweenGroupService;
     //暂未完成
     @RequestMapping("completegoal")
     public Map<String,Object> completeGoal(@RequestBody Record record){
+        Map<String,Object> results = new HashMap<>();
         if(recordService.addRecord(record)==true){
             try {
                 RankInGroup rankInGroup = new RankInGroup();
-                Integer dayMinutes=record.getMinutes();
-                //将对应RankInGroup中的dayMinutes更新
-                rankInGroupService.getRankInGroupListByGroupId(record.getGroupId());
+                Integer groupId = record.getGroupId();
+                Integer minutes = record.getMinutes();
+                //将RankInGroup中的dayMinutes更新
+                rankInGroup.setGroupId(groupId);
+                rankInGroup.setUserId(record.getUserId());
+                rankInGroup.setDayMinutes(minutes);
+                //将RankInGroup中的weekMinutes更新
+                RankInGroup rankInGroup1=rankInGroupService.updateWeekMinutes(rankInGroup);
+                //更新数据库rank_in_group表
+                if(rankInGroupService.updateRankInGroup(rankInGroup1)==true){
+                    //计算新的day_average_minutes和week_average_minutes
+                    RankBetweenGroup rankBetweenGroup=computeRankBetweenGroupService.computeRankBetweenGroupMinutes(groupId,minutes);
+                    //更新数据库rank_between_group表
+                    if(rankBetweenGroupService.updateRankBetweenGroup(rankBetweenGroup)){
+                        results.put("success",1);
+                        return results;
+                    }
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return null;
+        results.put("success",0);
+        return results;
     }
 }

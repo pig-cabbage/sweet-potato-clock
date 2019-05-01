@@ -12,6 +12,8 @@ public interface RankBetweenGroupService {
      */
     void getRankBetweenGroupList();
 
+    RankBetweenGroup getRankBetweenGroupById(Integer groupId);
+
     /**
      * 依据当日人均打卡时长对获取RankBetweenGroup列表进行降序排序
      *

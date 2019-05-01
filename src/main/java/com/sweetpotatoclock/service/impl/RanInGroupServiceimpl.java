@@ -63,7 +63,17 @@ public class RanInGroupServiceimpl implements RankInGroupService {
     }
 
     @Override
-    public Integer updateWeekMinutes(RankInGroup rankInGroup) {
-        return null;
+    public RankInGroup updateWeekMinutes(RankInGroup rankInGroup) {
+        List<RankInGroup> rankInGroups = rankInGroupMapper.selectAll();
+        for(int i=0;i<rankInGroups.size();i++){
+            //选出对应groupId和userId的RankInGroup对象
+            RankInGroup item = rankInGroups.get(i);
+            if(item.getGroupId().equals(rankInGroup.getGroupId())&&item.getGroupId().equals(rankInGroup.getUserId())){
+                //weekMinutes=原来的weekMinutes+最新的dayMinutes
+                rankInGroup.setWeekMinutes(item.getWeekMinutes()+rankInGroup.getDayMinutes());
+                break;
+            }
+        }
+        return rankInGroup;
     }
 }

@@ -27,6 +27,11 @@ public class RankBetweenGroupimpl implements RankBetweenGroupService {
     }
 
     @Override
+    public RankBetweenGroup getRankBetweenGroupById(Integer groupId) {
+        return rankBetweenGroupMapper.selectByPrimaryKey(groupId);
+    }
+
+    @Override
     public void rankByDayAverageMinutes() {
         Collections.sort(list, new Comparator<RankBetweenGroup>() {
             @Override

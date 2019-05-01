@@ -31,5 +31,5 @@ public interface RankInGroupService {
 
     Boolean updateRankInGroup(RankInGroup rankInGroup);
 
-    Integer updateWeekMinutes(RankInGroup rankInGroup);
+    RankInGroup updateWeekMinutes(RankInGroup rankInGroup);
 }
