@@ -24,7 +24,7 @@ public class UserInformationController {
      *
      * @return
      */
-    @RequestMapping("/getuserinformationbyuserid")
+    @RequestMapping(value = "/getuserinformationbyuserid",method = RequestMethod.GET)
     public Map<String,Object> getUserInformationByUserId (@RequestParam("userid") String userId){
         Map<String,Object>modelMap=new HashMap<String,Object>();
         //System.out.print(userId);
