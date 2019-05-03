@@ -32,7 +32,7 @@ public class UserInformationMapperTest {
 
     @Test
     public void selectByPrimaryKey() {
-        UserInformation userInformation = userInformationMapper.selectByPrimaryKey("1");
+        UserInformation userInformation = userInformationMapper.selectByPrimaryKey("2");
         System.out.print(userInformation.toString());
     }
 

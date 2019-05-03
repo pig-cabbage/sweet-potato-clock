@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -19,11 +20,12 @@ public class AchieveListServiceimpl implements AchieveListService {
 
     @Override
     public List<String> getAchieveListInformationByUserId(String userId) {
-        List<Integer> list1 = achieveListMapper.selectAchieveListByUserId(userId);
-        List<String> list2 = new ArrayList<>();
-        for (int i = 0; i < list1.size(); ++i) {
-            list2.add(achieveInfoMapper.selectAchieveNameByAchieveId(list1.get(i)));
-        }
+        List<AchieveList> list1 = achieveListMapper.selectAchieveListByUserId(userId);
+        List<String> list2 =  Arrays.asList(new String[list1.size()]);
+        for (int i = 0; i <list1.size(); ++i) {
+            Integer a=list1.get(i).getAchieveId();
+            list2.set(i,achieveInfoMapper.selectByPrimaryKey(a).getAchieveName());
+    }
         return list2;
     }
 

@@ -47,5 +47,5 @@ public interface AchieveInfoMapper {
      */
     int updateByPrimaryKey(AchieveInfo record);
 
-    String selectAchieveNameByAchieveId(int achieveId);
+
 }

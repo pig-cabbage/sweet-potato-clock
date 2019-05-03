@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("userinformation")
+@RequestMapping("/userinformation")
 public class UserInformationController {
     @Autowired
     private UserInformationService userinformationService;
@@ -25,7 +25,7 @@ public class UserInformationController {
      * @return
      */
     @RequestMapping(value = "/getuserinformationbyuserid",method = RequestMethod.GET)
-    public Map<String,Object> getUserInformationByUserId (@RequestParam("userid") String userId){
+    public Map<String,Object> getUserInformationByUserId ( String userId){
         Map<String,Object>modelMap=new HashMap<String,Object>();
         //System.out.print(userId);
         //获取个人信息
