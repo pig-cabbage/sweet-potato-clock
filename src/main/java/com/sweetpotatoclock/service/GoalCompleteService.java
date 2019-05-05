@@ -10,4 +10,8 @@ public interface GoalCompleteService {
     List<GoalComplete> queryGoalByUserId(String userId);
 
     List<GoalComplete> queryGoalByGroupId(Integer groupId);
+
+    Boolean addGoalComplete(GoalComplete goalComplete);
+
+    Boolean addGoalCompleteInCreate(Integer groupId, String userId);
 }

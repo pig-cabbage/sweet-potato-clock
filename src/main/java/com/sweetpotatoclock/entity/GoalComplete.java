@@ -109,7 +109,7 @@ public class GoalComplete implements Serializable {
      * @param completion the value for goal_complete.completion
      * @mbg.generated
      */
-    public void setCompletion(BigDecimal completion) {
+    public void setCompletion(int completion) {
         this.completion = completion;
     }
 

@@ -263,8 +263,9 @@ public class Group implements Serializable {
      *
      * @return the value of group.is_private
      * @mbg.generated
+     * @param i
      */
-    public Byte getIsPrivate() {
+    public Byte getIsPrivate(int i) {
         return isPrivate;
     }
 

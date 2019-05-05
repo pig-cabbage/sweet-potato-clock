@@ -24,7 +24,12 @@ public class RecordController {
     private RankBetweenGroupService rankBetweenGroupService;
     @Autowired
     private ComputeRankBetweenGroupService computeRankBetweenGroupService;
-    //暂未完成
+
+    /**
+     * 打卡完成后增加记录，更新排名
+     * @param record
+     * @return
+     */
     @RequestMapping("completegoal")
     public Map<String,Object> completeGoal(@RequestBody Record record){
         Map<String,Object> results = new HashMap<>();

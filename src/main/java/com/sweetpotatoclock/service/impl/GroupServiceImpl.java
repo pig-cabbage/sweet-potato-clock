@@ -1,7 +1,10 @@
 package com.sweetpotatoclock.service.impl;
 
+import com.sweetpotatoclock.dao.GoalCompleteMapper;
 import com.sweetpotatoclock.dao.GroupMapper;
+import com.sweetpotatoclock.entity.GoalComplete;
 import com.sweetpotatoclock.entity.Group;
+import com.sweetpotatoclock.service.GoalCompleteService;
 import com.sweetpotatoclock.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +40,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Boolean addGroup(Group group) {
+        //创建与group表有关的相关信息并向group表中添加数据
         group.setGroupName("新小组");
         java.util.Date date = new Date();
         java.sql.Date data1 = new java.sql.Date(date.getTime());
@@ -68,7 +72,9 @@ public class GroupServiceImpl implements GroupService {
         }
         group.setMemberNumber(1);
         try {
-            if(groupMapper.insert(group)==1){return true;}
+            if(groupMapper.insert(group)==1){
+               return true;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
