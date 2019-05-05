@@ -24,5 +24,5 @@ public interface AchieveListMapper {
      */
     List<AchieveList> selectAll();
 
-    List<Integer> selectAchieveListByUserId(String userId);
+    List<AchieveList> selectAchieveListByUserId(String userId);
 }

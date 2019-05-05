@@ -1,6 +1,6 @@
 package com.sweetpotatoclock.dao;
 
-import com.sweetpotatoclock.entity.AchieveInfo;
+import com.sweetpotatoclock.entity.AchieveList;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,20 +13,13 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AchieveInfoMapperTest {
+public class AchieveListMapperTest {
     @Autowired
-    private AchieveInfoMapper achieveInfoMapper;
-
+    private  AchieveListMapper achieveListMapper;
     @Test
-    public void selectAchieveNameByAchieveId() {
-        String result = achieveInfoMapper.selectByPrimaryKey(1).getAchieveName();
-
-        System.out.print(result);
-    }
-
-    @Test
-    public void selectAll() {
-        List<AchieveInfo> returnlist=achieveInfoMapper.selectAll();
+    public void selectAchieveListByUserId() {
+        List<AchieveList> returnlist=achieveListMapper.selectAchieveListByUserId("1");
         assertEquals(2,returnlist.size());
+        System.out.print(returnlist.size());
     }
 }
