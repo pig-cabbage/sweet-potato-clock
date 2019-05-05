@@ -31,4 +31,6 @@ public interface RankBetweenGroupService {
     List<RankBetweenGroup> getList();
 
     Boolean updateRankBetweenGroup(RankBetweenGroup rankBetweenGroup);
+
+    Boolean addRankBetweenGroupInCreate(Integer groupId);
 }

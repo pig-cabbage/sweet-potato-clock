@@ -65,4 +65,16 @@ public class RankBetweenGroupimpl implements RankBetweenGroupService {
         }
         return false;
     }
+
+    @Override
+    public Boolean addRankBetweenGroupInCreate(Integer groupId) {
+        RankBetweenGroup rankBetweenGroup=new RankBetweenGroup();
+        rankBetweenGroup.setWeekAverageMinutes((double) 0);
+        rankBetweenGroup.setDayAverageMinutes((double) 0);
+        rankBetweenGroup.setGroupId(groupId);
+        if(rankBetweenGroupMapper.insert(rankBetweenGroup)==1){
+            return true;
+        }
+        return false;
+    }
 }

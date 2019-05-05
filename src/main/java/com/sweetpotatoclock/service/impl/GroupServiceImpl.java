@@ -39,7 +39,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Boolean addGroup(Group group) {
+    public Boolean addNewGroup(Group group) {
         //创建与group表有关的相关信息并向group表中添加数据
         group.setGroupName("新小组");
         java.util.Date date = new Date();
@@ -79,5 +79,10 @@ public class GroupServiceImpl implements GroupService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public List<Group> getAllGroup() {
+        return groupMapper.selectAll();
     }
 }

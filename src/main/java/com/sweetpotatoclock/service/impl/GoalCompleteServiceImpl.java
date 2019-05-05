@@ -61,6 +61,14 @@ public class GoalCompleteServiceImpl implements GoalCompleteService {
 
     @Override
     public Boolean addGoalCompleteInCreate(Integer groupId, String userId) {
-        return null;
+        GoalComplete goalComplete=new GoalComplete();
+        goalComplete.setGroupId(groupId);
+        goalComplete.setUserId(userId);
+        goalComplete.setCompletion(0);
+        goalComplete.setIsClocked(0);
+        if(goalCompleteMapper.insert(goalComplete)==1){
+            return true;
+        }
+        return false;
     }
 }

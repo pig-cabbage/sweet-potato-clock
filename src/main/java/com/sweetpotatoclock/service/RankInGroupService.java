@@ -32,4 +32,6 @@ public interface RankInGroupService {
     Boolean updateRankInGroup(RankInGroup rankInGroup);
 
     RankInGroup updateWeekMinutes(RankInGroup rankInGroup);
+
+    Boolean addRankInGroupInCreate(Integer groupId,String userId);
 }
