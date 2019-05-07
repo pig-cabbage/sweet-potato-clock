@@ -46,4 +46,9 @@ public interface RankBetweenGroupMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(RankBetweenGroup record);
+
+    void clearDayAverageMinutes();
+
+    void clearWeekAverageMinutes();
+
 }

@@ -26,4 +26,8 @@ public interface RankInGroupMapper {
     List<RankInGroup> selectListByGroupId(Integer groupId);
 
     int updateById(RankInGroup record);
+
+    void clearDayMinutes();
+
+    void clearWeekMinutes();
 }
