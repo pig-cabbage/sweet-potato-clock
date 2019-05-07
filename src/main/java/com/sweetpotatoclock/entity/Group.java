@@ -263,9 +263,9 @@ public class Group implements Serializable {
      *
      * @return the value of group.is_private
      * @mbg.generated
-     * @param i
+     * @param
      */
-    public Byte getIsPrivate(int i) {
+    public Byte getIsPrivate() {
         return isPrivate;
     }
 
@@ -373,4 +373,5 @@ public class Group implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
 }

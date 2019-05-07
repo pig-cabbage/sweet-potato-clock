@@ -43,5 +43,16 @@ public class UserInformationServiceimpl implements UserInformationService {
         }
     }
 
+    @Override
+    public Boolean updateUserScoreInJoin(String userId, Integer joinScore) {
+        UserInformation userInformation=userInformationMapper.selectByPrimaryKey(userId);
+        Integer scoreBefore = userInformation.getScore();
+        userInformation.setScore(scoreBefore-joinScore);
+        if(userInformationMapper.updateByPrimaryKey(userInformation)==1){
+            return true;
+        }
+        return false;
+    }
+
 
 }
