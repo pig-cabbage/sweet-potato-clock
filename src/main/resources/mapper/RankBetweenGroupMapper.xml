@@ -55,4 +55,12 @@
         select group_id, day_average_minutes, week_average_minutes
         from rank_between_group
     </select>
+    <update id="clearDayAverageMinutes">
+        update rank_between_group
+        set day_average_minutes=0
+    </update>
+    <update id="clearWeekAverageMinutes">
+        update rank_between_group
+        set week_average_minutes=0
+    </update>
 </mapper>
