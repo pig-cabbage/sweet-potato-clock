@@ -41,10 +41,4 @@ public class GroupController {
         return result;
     }
 
-    @RequestMapping(value = "creategroup",method = RequestMethod.POST)
-    public Map<String,Object> createGroup(@RequestBody Group group){
-        Map<String,Object> result = new HashMap<>();
-        result.put("success",groupService.addGroup(group));
-        return result;
-    }
 }

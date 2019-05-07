@@ -13,5 +13,6 @@ public interface UserInformationService {
      */
     UserInformation getUserInformationByUserId(String userID);
 
+    int addUserInformationInLogin(String userId,String nickName,String avatarUrl);
 
 }

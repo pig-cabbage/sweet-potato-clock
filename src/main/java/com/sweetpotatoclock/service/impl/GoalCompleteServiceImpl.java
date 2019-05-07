@@ -7,6 +7,7 @@ import com.sweetpotatoclock.service.GoalCompleteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -61,6 +62,14 @@ public class GoalCompleteServiceImpl implements GoalCompleteService {
 
     @Override
     public Boolean addGoalCompleteInCreate(Integer groupId, String userId) {
-        return null;
+        GoalComplete goalComplete=new GoalComplete();
+        goalComplete.setGroupId(groupId);
+        goalComplete.setUserId(userId);
+        goalComplete.setCompletion(BigDecimal.valueOf(0));
+        goalComplete.setIsClocked(0);
+        if(goalCompleteMapper.insert(goalComplete)==1){
+            return true;
+        }
+        return false;
     }
 }

@@ -11,5 +11,7 @@ public interface GroupService {
 
     List<Group> getGroupByCondition(String tag,Integer minutes,Integer days);
 
-    Boolean addGroup(Group group);
+    Boolean addNewGroup(Group group);
+
+    List<Group> getAllGroup();
 }

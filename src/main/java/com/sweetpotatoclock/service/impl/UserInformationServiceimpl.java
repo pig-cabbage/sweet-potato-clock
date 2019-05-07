@@ -19,5 +19,29 @@ public class UserInformationServiceimpl implements UserInformationService {
         return userInformationMapper.selectByPrimaryKey(userId);
     }
 
+    /**
+     *
+     * @param userId
+     * @param nickName
+     * @return 0:失败 1：成功 2：已存在
+     */
+    @Override
+    public int addUserInformationInLogin(String userId, String nickName,String avatarUrl) {
+        if(userInformationMapper.selectByPrimaryKey(userId)!=null){
+            return 2;
+        }
+        else{
+            UserInformation userInformation=new UserInformation();
+            userInformation.setUserId(userId);
+            userInformation.setUserNickname(nickName);
+            userInformation.setDaysSum(0);
+            userInformation.setMinutesSum(0);
+            userInformation.setContinueDays(0);
+            userInformation.setScore(0);
+            userInformation.setMotto(avatarUrl);
+            return userInformationMapper.insert(userInformation);
+        }
+    }
+
 
 }

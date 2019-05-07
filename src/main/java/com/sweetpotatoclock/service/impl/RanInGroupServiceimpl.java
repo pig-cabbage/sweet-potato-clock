@@ -76,4 +76,18 @@ public class RanInGroupServiceimpl implements RankInGroupService {
         }
         return rankInGroup;
     }
+
+    @Override
+    public Boolean addRankInGroupInCreate(Integer groupId, String userId) {
+        RankInGroup rankInGroup=new RankInGroup();
+        rankInGroup.setDayMinutes(0);
+        rankInGroup.setWeekMinutes(0);
+        rankInGroup.setUserId(userId);
+        rankInGroup.setGroupId(groupId);
+        if(rankInGroupMapper.insert(rankInGroup)==1){
+            return true;
+        }
+        return false;
+    }
+
 }
