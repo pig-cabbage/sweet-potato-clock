@@ -33,7 +33,7 @@ public class CreateGroupController {
         if(groupService.addNewGroup(group)==true){
             List<Group> allGroup = groupService.getAllGroup();
             //获取列表中的最后一个的groupId
-            Integer groupId=allGroup.get(allGroup.size()).getGroupId();
+            Integer groupId=allGroup.get(allGroup.size()-1).getGroupId();
             //添加至goal_complete、rank_in_group、rank_between_group表
             goalCompleteService.addGoalCompleteInCreate(groupId,group.getCaptainId());
             rankInGroupService.addRankInGroupInCreate(groupId,group.getCaptainId());
