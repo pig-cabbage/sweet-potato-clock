@@ -21,7 +21,7 @@ public class UserInformationControllerTest {
     @Test
     public void getUserInformationByUserId() {
         Map<String,Object> map= userInformationController.getUserInformationByUserId("1");
-        assertEquals(12,map.size());
+        assertEquals(1,map.size());
         System.out.print(map.values().toString());
     }
 
