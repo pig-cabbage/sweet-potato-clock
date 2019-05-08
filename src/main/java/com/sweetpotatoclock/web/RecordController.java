@@ -1,9 +1,6 @@
 package com.sweetpotatoclock.web;
 
-import com.sweetpotatoclock.entity.Group;
-import com.sweetpotatoclock.entity.RankBetweenGroup;
-import com.sweetpotatoclock.entity.RankInGroup;
-import com.sweetpotatoclock.entity.Record;
+import com.sweetpotatoclock.entity.*;
 import com.sweetpotatoclock.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,8 +52,8 @@ public class RecordController {
                     //计算新的day_average_minutes和week_average_minutes
                     RankBetweenGroup rankBetweenGroup=computeRankBetweenGroupService.computeRankBetweenGroupMinutes(groupId,minutes);
                     //更新数据库rank_between_group表
-                    if(rankBetweenGroupService.updateRankBetweenGroup(rankBetweenGroup)){
-                        results.put("success",1);
+                    if(rankBetweenGroupService.updateRankBetweenGroup(rankBetweenGroup)) {
+                        results.put("success", 1);
                         return results;
                     }
                 }

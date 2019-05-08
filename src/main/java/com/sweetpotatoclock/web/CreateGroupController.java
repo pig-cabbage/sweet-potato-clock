@@ -29,6 +29,7 @@ public class CreateGroupController {
 
     @RequestMapping(value = "creategroup",method = RequestMethod.POST)
     public Map<String,Object> createGroup(@RequestBody Group group){
+        //System.out.print(group+"\n");
         Map<String,Object> result = new HashMap<>();
         if(groupService.addNewGroup(group)==true){
             List<Group> allGroup = groupService.getAllGroup();
@@ -39,6 +40,7 @@ public class CreateGroupController {
             rankInGroupService.addRankInGroupInCreate(groupId,group.getCaptainId());
             rankBetweenGroupService.addRankBetweenGroupInCreate(groupId);
             result.put("success",1);
+            result.put("groupId",groupId);
         }
         else result.put("success",0);
         return result;

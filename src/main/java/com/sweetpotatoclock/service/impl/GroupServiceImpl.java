@@ -42,6 +42,7 @@ public class GroupServiceImpl implements GroupService {
         java.util.Date date = new Date();
         java.sql.Date data1 = new java.sql.Date(date.getTime());
         group.setCreateDate(data1);
+        group.setIsPrivate((byte) 0);
         switch (group.getDays()){
             case 3 : {
                 group.setJoinScore(0);

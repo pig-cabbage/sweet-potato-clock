@@ -17,4 +17,6 @@ public interface UserInformationService {
 
     Boolean updateUserScoreInJoin(String userId,Integer joinScore);
 
+    Boolean updateUserScoreInComplete(String userId,Integer obtainScore);
+
 }
