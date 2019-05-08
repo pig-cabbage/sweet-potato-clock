@@ -33,6 +33,7 @@ public class ClearDayRankServiceimpl  implements ClearDayRankService{
      */
     @Async
     @Scheduled(cron="0 0 0 ? * *")
+    @Override
     public void clearDayRecordInGroup(){
         rankInGroupMapper.clearDayMinutes();
     }
@@ -44,6 +45,7 @@ public class ClearDayRankServiceimpl  implements ClearDayRankService{
      */
     @Async
     @Scheduled(cron="0 0 0 ? * *")
+    @Override
     public void clearDayRecordBetweenGroup(){
         rankBetweenGroupMapper.clearDayAverageMinutes();
     }

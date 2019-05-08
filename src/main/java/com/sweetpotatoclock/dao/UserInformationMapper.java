@@ -48,4 +48,6 @@ public interface UserInformationMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(UserInformation record);
+
+
 }
