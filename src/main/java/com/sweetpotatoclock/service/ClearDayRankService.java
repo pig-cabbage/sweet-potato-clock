@@ -21,5 +21,5 @@ public interface ClearDayRankService {
      *
      *
      */
-    void clearIsCLocked();
+   void clearIsClocked();
 }

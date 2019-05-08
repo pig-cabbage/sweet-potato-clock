@@ -15,8 +15,8 @@ public class BuyTreeController {
     private BuyTreesService buyTreesService;
 
     @RequestMapping(value="buytrees",method = RequestMethod.POST)
-    public Map<String,Object> buyTrees(@RequestBody String userId, int number){
-        Map<String, Object>result =new HashMap<String, Object>();
+    public Map<String,Object> buyTrees(@RequestParam("userId") String userId, @RequestParam("number") int number){
+        Map<String, Object>result =new HashMap<>();
         if(buyTreesService.buyTrees(userId,number)==1){
             result.put("success",1);
         }
