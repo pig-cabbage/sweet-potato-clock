@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("record")
+@RequestMapping("/record")
 public class RecordController {
     @Autowired
     private RecordService recordService;
@@ -30,7 +30,7 @@ public class RecordController {
      * @param record
      * @return
      */
-    @RequestMapping("completegoal")
+    @RequestMapping("/completegoal")
     public Map<String,Object> completeGoal(@RequestBody Record record){
         Map<String,Object> results = new HashMap<>();
         if(recordService.addRecord(record)==true){
