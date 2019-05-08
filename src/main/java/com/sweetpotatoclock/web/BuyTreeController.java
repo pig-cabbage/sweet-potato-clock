@@ -1,6 +1,7 @@
 package com.sweetpotatoclock.web;
 
 import com.sweetpotatoclock.service.BuyTreesService;
+import com.sweetpotatoclock.service.MakeTreesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +19,13 @@ import java.util.Map;
 public class BuyTreeController {
     @Autowired
     private BuyTreesService buyTreesService;
+    @Autowired
+    private MakeTreesService makeTreesService;
     @RequestMapping(value="buytrees",method = RequestMethod.GET)
     public Map<String, Object> buyTrees(@RequestParam("userId") String userId, @RequestParam("number") int number){
         Map<String, Object>result =new HashMap<>();
         if(buyTreesService.buyTrees(userId,number)==1){
+            makeTreesService.modify(userId,number);
             result.put("success",1);
         }
         else
