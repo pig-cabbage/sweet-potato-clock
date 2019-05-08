@@ -19,10 +19,11 @@ public class SearchServiceimpl implements SearchService {
         List<Group>result=new ArrayList<>();
         List<Group>list_1=groupMapper.selectAll();
         for(int i=0;i<list_1.size();++i){
-            if(list_1.get(i).getGroupName()==groupName){
+            if(list_1.get(i).getGroupName().equals(groupName)){
                 result.add(list_1.get(i));
             }
         }
+
         return result;
     }
 }
