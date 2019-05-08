@@ -22,10 +22,10 @@ public class CreateGroupControllerTest {
     @Test
     public void createGroupTest() {
         Group group = new Group();
-        group.setTag("英语");
+        group.setTag("学习");
         group.setDays(7);
-        group.setMinutes(50);
-        group.setCaptainId("oAYW15Aei5xRSbr0V-rEllEMsPt8");
+        group.setMinutes(30);
+        group.setCaptainId("oAYW15KDTSc8zloBj13wNgt3b2nc");
         group.setIsPrivate((byte) 0);
         Map<String,Object> result = new HashMap<>();
         result = createGroupController.createGroup(group);

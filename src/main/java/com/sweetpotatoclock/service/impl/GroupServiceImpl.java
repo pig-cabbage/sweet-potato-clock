@@ -30,8 +30,8 @@ public class GroupServiceImpl implements GroupService {
         List<Group> groups = new ArrayList<>();
         for(int i = 0;i<allGroupList.size();i++){
             Group item = allGroupList.get(i);
-            //同时满足三个要求
-            if(item.getTag().equals(tag)&&item.getMinutes().equals(minutes)&&item.getDays().equals(days)){
+            //同时满足四个要求
+            if(item.getTag().equals(tag)&&item.getMinutes().equals(minutes)&&item.getDays().equals(days)&&item.getIsPrivate()==0){
                 groups.add(item);
             }
         }
@@ -84,5 +84,16 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public List<Group> getAllGroup() {
         return groupMapper.selectAll();
+    }
+
+    @Override
+    public Group updateGroupMemberNumber(Integer groupId) {
+        Group group=groupMapper.selectByPrimaryKey(groupId);
+        Integer before=group.getMemberNumber();
+        group.setMemberNumber(++before);
+        if(groupMapper.updateByPrimaryKey(group)==1){
+            return group;
+        }
+        return null;
     }
 }

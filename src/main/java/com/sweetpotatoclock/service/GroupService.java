@@ -14,4 +14,6 @@ public interface GroupService {
     Boolean addNewGroup(Group group);
 
     List<Group> getAllGroup();
+
+    Group updateGroupMemberNumber(Integer groupId);
 }
