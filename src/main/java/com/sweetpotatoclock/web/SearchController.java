@@ -23,6 +23,7 @@ public class SearchController {
     public Map<String,Object> searchByGroupName(@RequestParam("groupName") String groupName){
         Map<String, Object> modelMap =new HashMap<String, Object>();
         List<Group> groupList=searchService.searchGroupByGroupName(groupName);
+        System.out.println(groupList.get(0).toString());
         modelMap.put("groupList",groupList);
         return modelMap;
     }

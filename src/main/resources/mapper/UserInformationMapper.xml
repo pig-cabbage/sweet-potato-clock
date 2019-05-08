@@ -66,4 +66,5 @@
         select user_id, user_nickname, score, days_sum, minutes_sum, continue_days,motto
         from user_information
     </select>
+
 </mapper>
