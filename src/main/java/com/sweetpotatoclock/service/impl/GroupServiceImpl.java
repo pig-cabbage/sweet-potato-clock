@@ -1,10 +1,7 @@
 package com.sweetpotatoclock.service.impl;
 
-import com.sweetpotatoclock.dao.GoalCompleteMapper;
 import com.sweetpotatoclock.dao.GroupMapper;
-import com.sweetpotatoclock.entity.GoalComplete;
 import com.sweetpotatoclock.entity.Group;
-import com.sweetpotatoclock.service.GoalCompleteService;
 import com.sweetpotatoclock.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,6 +79,15 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public Boolean deleteGroup(Integer groupId) {
+
+        if(groupMapper.deleteByPrimaryKey(groupId)==1){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public List<Group> getAllGroup() {
         return groupMapper.selectAll();
     }
@@ -95,5 +101,16 @@ public class GroupServiceImpl implements GroupService {
             return group;
         }
         return null;
+    }
+
+    @Override
+    public Boolean updateGroupNameAndIsprivate(Integer groupId, String groupName, Integer isPrivate) {
+        Group group = groupMapper.selectByPrimaryKey(groupId);
+        group.setGroupName(groupName);
+        group.setIsPrivate(isPrivate.byteValue());
+        if(groupMapper.updateByPrimaryKey(group)==1){
+            return true;
+        }
+        return false;
     }
 }

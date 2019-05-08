@@ -27,4 +27,13 @@ public class RecordServiceImpl implements RecordService {
         }
         return false;
     }
+
+    @Override
+    public Boolean deleteRecord(Integer groupId) {
+
+        if(recordMapper.deleteByGroupId(groupId)==1){
+            return true;
+        }
+        return false;
+    }
 }

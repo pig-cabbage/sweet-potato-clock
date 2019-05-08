@@ -20,6 +20,7 @@ public class ComputeRankBetweenGroupServiceImpl implements ComputeRankBetweenGro
         //查找对应groupId的RankBetweenGroup对象以及Group对象
         RankBetweenGroup rankBetweenGroup = rankBetweenGroupService.getRankBetweenGroupById(groupId);
         Group group = groupService.getGroupByGroupId(groupId);
+        //System.out.print(rankBetweenGroup+"\n");
         //计算新的day_average_minutes，新day_average_minutes=(旧day_average_minutes*member_number+minutes)/member_number
         Double dayMinutes = rankBetweenGroup.getDayAverageMinutes();
         Integer memberNumber = group.getMemberNumber();

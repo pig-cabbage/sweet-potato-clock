@@ -93,11 +93,31 @@ public class GoalCompleteServiceImpl implements GoalCompleteService {
             //计算并添加完成度(旧的完成度*要求连续天数+1）/要求连续天数
             Double completionNew = ((groupUserGoal.getCompletion().doubleValue() * group.getDays()) + 1) / group.getDays();
             groupUserGoal.setCompletion(completionNew);
-            System.out.print(groupUserGoal.getCompletion()+"\n");
+            //System.out.print(groupUserGoal.getCompletion()+"\n");
             goalCompleteMapper.updateById(groupUserGoal);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean deleteGroup(Integer groupId) {
+
+        if(goalCompleteMapper.deleteByGroupId(groupId)==1){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean deleteGoalComplete(Integer groupId, String userId) {
+        GoalComplete goalComplete = new GoalComplete();
+        goalComplete.setUserId(userId);
+        goalComplete.setGroupId(groupId);
+        if(goalCompleteMapper.deleteByGroupIdAndUserId(goalComplete)==1){
+            return true;
         }
         return false;
     }

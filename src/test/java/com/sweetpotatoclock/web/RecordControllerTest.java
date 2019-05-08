@@ -22,8 +22,8 @@ public class RecordControllerTest {
     public void completeGoal() {
         Record record=new Record();
         record.setMinutes(30);
-        record.setGroupId(7);
-        record.setUserId("1");
+        record.setGroupId(8);
+        record.setUserId("oAYW15KDTSc8zloBj13wNgt3b2nc");
         Map<String,Object> res=recordController.completeGoal(record);
     }
 }

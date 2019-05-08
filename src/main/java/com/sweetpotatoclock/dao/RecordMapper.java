@@ -22,4 +22,6 @@ public interface RecordMapper {
      * @mbg.generated
      */
     List<Record> selectAll();
+
+    int deleteByGroupId(Integer groupId);
 }

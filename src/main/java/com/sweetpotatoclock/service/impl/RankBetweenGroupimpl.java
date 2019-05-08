@@ -77,4 +77,13 @@ public class RankBetweenGroupimpl implements RankBetweenGroupService {
         }
         return false;
     }
+
+    @Override
+    public Boolean deleteRankBetweenGroup(Integer groupId) {
+
+        if(rankBetweenGroupMapper.deleteByPrimaryKey(groupId)==1){
+            return true;
+        }
+        return false;
+    }
 }

@@ -29,4 +29,9 @@
         select user_id, group_id, `minutes`, `date`
         from record
     </select>
+    <delete id="deleteByGroupId" parameterType="java.lang.Integer">
+
+        delete from `record`
+        where group_id = #{groupId,jdbcType=INTEGER}
+    </delete>
 </mapper>

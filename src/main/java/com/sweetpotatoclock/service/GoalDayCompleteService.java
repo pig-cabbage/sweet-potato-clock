@@ -11,4 +11,6 @@ public interface GoalDayCompleteService {
      * @return
      */
     List<GoalDayComplete> getGoalDayCompleteByUserId(String userId);
+
+    Boolean addGoalDayComplete(GoalDayComplete goalDayComplete);
 }
