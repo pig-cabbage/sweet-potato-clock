@@ -23,5 +23,5 @@ public interface GoalCompleteMapper {
      */
     List<GoalComplete> selectAll();
 
-    void clearIsClocked();
+    int updateById(GoalComplete record);
 }
