@@ -24,6 +24,8 @@ public class RecordController {
     private RankBetweenGroupService rankBetweenGroupService;
     @Autowired
     private ComputeRankBetweenGroupService computeRankBetweenGroupService;
+    @Autowired
+    private GoalCompleteService goalCompleteService;
 
     /**
      * 打卡完成后增加记录，更新排名
@@ -35,6 +37,8 @@ public class RecordController {
         Map<String,Object> results = new HashMap<>();
         if(recordService.addRecord(record)==true){
             try {
+                //更新goal_complete表
+                goalCompleteService.updateGoalComplete(record.getGroupId(),record.getUserId());
                 RankInGroup rankInGroup = new RankInGroup();
                 Integer groupId = record.getGroupId();
                 Integer minutes = record.getMinutes();

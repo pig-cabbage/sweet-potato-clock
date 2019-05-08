@@ -8,7 +8,7 @@
         -->
         <result column="user_id" jdbcType="VARCHAR" property="userId"/>
         <result column="group_id" jdbcType="INTEGER" property="groupId"/>
-        <result column="completion" jdbcType="DECIMAL" property="completion"/>
+        <result column="completion" jdbcType="DOUBLE" property="completion"/>
         <result column="is_clocked" jdbcType="INTEGER" property="isClocked"/>
     </resultMap>
     <insert id="insert" parameterType="com.sweetpotatoclock.entity.GoalComplete">
@@ -18,7 +18,7 @@
         -->
         insert into `goal_complete` (user_id, group_id, `completion`,
         is_clocked)
-        values (#{userId,jdbcType=VARCHAR}, #{groupId,jdbcType=INTEGER}, #{completion,jdbcType=DECIMAL},
+        values (#{userId,jdbcType=VARCHAR}, #{groupId,jdbcType=INTEGER}, #{completion,jdbcType=DOUBLE},
         #{isClocked,jdbcType=INTEGER})
     </insert>
     <select id="selectAll" resultMap="BaseResultMap">
@@ -29,4 +29,10 @@
         select user_id, group_id, `completion`, is_clocked
         from goal_complete
     </select>
+    <update id="updateById" parameterType="com.sweetpotatoclock.entity.GoalComplete">
+        update `goal_complete`
+        set completion = #{completion,jdbcType=DOUBLE},
+        is_clocked = #{isClocked,jdbcType=INTEGER}
+        where group_id = #{groupId,jdbcType=INTEGER} AND user_id = #{userId,jdbcType=VARCHAR}
+    </update>
 </mapper>

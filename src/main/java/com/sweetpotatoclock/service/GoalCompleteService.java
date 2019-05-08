@@ -14,4 +14,6 @@ public interface GoalCompleteService {
     Boolean addGoalComplete(GoalComplete goalComplete);
 
     Boolean addGoalCompleteInCreate(Integer groupId, String userId);
+
+    Boolean updateGoalComplete(Integer groupId,String userId);
 }

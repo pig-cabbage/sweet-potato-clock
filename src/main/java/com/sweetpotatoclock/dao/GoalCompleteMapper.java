@@ -22,4 +22,6 @@ public interface GoalCompleteMapper {
      * @mbg.generated
      */
     List<GoalComplete> selectAll();
+
+    int updateById(GoalComplete record);
 }

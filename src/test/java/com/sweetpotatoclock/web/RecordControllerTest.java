@@ -24,8 +24,6 @@ public class RecordControllerTest {
         record.setMinutes(30);
         record.setGroupId(7);
         record.setUserId("1");
-        System.out.print(record.getUserId()+"\n");
         Map<String,Object> res=recordController.completeGoal(record);
-        System.out.print(res);
     }
 }
