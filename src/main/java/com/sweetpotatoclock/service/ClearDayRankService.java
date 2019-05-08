@@ -15,4 +15,11 @@ public interface ClearDayRankService {
      *
      */
     void clearDayRecordBetweenGroup();
+
+    /**
+     * 将是否打卡重置为0（未打卡）
+     *
+     *
+     */
+    void clearIsCLocked();
 }

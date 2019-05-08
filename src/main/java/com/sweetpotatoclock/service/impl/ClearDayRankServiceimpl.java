@@ -1,5 +1,6 @@
 package com.sweetpotatoclock.service.impl;
 
+import com.sweetpotatoclock.dao.GoalCompleteMapper;
 import com.sweetpotatoclock.dao.RankBetweenGroupMapper;
 import com.sweetpotatoclock.dao.RankInGroupMapper;
 import com.sweetpotatoclock.entity.RankBetweenGroup;
@@ -22,6 +23,8 @@ public class ClearDayRankServiceimpl  implements ClearDayRankService{
     private RankInGroupMapper rankInGroupMapper;
     @Autowired
     private RankBetweenGroupMapper rankBetweenGroupMapper;
+    @Autowired
+    private GoalCompleteMapper goalCompleteMapper;
 
     /**
      * 组内排行清空日榜
@@ -43,5 +46,16 @@ public class ClearDayRankServiceimpl  implements ClearDayRankService{
     @Scheduled(cron="0 0 0 ? * *")
     public void clearDayRecordBetweenGroup(){
         rankBetweenGroupMapper.clearDayAverageMinutes();
+    }
+
+    /**
+     * 将是否打卡重置为0（未打卡）
+     *
+     *
+     */
+    @Async
+    @Scheduled(cron="0 0 0 ? * *")
+    public void clearIsClocked(){
+        goalCompleteMapper.clearIsClocked();
     }
 }

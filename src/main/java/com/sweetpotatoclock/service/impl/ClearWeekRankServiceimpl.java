@@ -25,6 +25,7 @@ public class ClearWeekRankServiceimpl implements ClearWeekRankService {
      */
     @Async
     @Scheduled(cron = "0 0 0 ? * MON")
+    @Override
     public  void clearWeekRecordInGroup(){
         rankInGroupMapper.clearWeekMinutes();;
     }

@@ -29,4 +29,9 @@
         select user_id, group_id, `completion`, is_clocked
         from goal_complete
     </select>
+
+    <update id="clearIsClocked">
+        update goal_complete
+        set is_clocked=0
+    </update>
 </mapper>
