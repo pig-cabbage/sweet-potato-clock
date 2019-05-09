@@ -57,4 +57,9 @@
         update rank_in_group
         set week_minutes=0
     </update>
+    <delete id="deleteByGroupId" parameterType="java.lang.Integer">
+
+        delete from `rank_in_group`
+        where group_id = #{groupId,jdbcType=INTEGER}
+    </delete>
 </mapper>

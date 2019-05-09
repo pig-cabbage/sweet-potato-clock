@@ -90,4 +90,13 @@ public class RanInGroupServiceimpl implements RankInGroupService {
         return false;
     }
 
+    @Override
+    public Boolean deleteRankInGroup(Integer groupId) {
+
+        if(rankInGroupMapper.deleteByGroupId(groupId)==1){
+            return true;
+        }
+        return false;
+    }
+
 }

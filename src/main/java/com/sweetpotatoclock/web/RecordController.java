@@ -1,13 +1,11 @@
 package com.sweetpotatoclock.web;
 
-import com.sweetpotatoclock.entity.Group;
-import com.sweetpotatoclock.entity.RankBetweenGroup;
-import com.sweetpotatoclock.entity.RankInGroup;
-import com.sweetpotatoclock.entity.Record;
+import com.sweetpotatoclock.entity.*;
 import com.sweetpotatoclock.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -32,9 +30,10 @@ public class RecordController {
      * @param record
      * @return
      */
-    @RequestMapping("/completegoal")
+    @RequestMapping(value = "/completegoal",method = RequestMethod.POST)
     public Map<String,Object> completeGoal(@RequestBody Record record){
         Map<String,Object> results = new HashMap<>();
+        System.out.print("record:"+record+"\n");
         if(recordService.addRecord(record)==true){
             try {
                 //更新goal_complete表
@@ -53,8 +52,8 @@ public class RecordController {
                     //计算新的day_average_minutes和week_average_minutes
                     RankBetweenGroup rankBetweenGroup=computeRankBetweenGroupService.computeRankBetweenGroupMinutes(groupId,minutes);
                     //更新数据库rank_between_group表
-                    if(rankBetweenGroupService.updateRankBetweenGroup(rankBetweenGroup)){
-                        results.put("success",1);
+                    if(rankBetweenGroupService.updateRankBetweenGroup(rankBetweenGroup)) {
+                        results.put("success", 1);
                         return results;
                     }
                 }

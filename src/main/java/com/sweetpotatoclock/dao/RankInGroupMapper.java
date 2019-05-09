@@ -30,4 +30,6 @@ public interface RankInGroupMapper {
     void clearDayMinutes();
 
     void clearWeekMinutes();
+
+    int deleteByGroupId(Integer groupId);
 }

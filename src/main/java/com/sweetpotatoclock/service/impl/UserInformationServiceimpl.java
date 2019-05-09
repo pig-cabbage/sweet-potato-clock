@@ -54,5 +54,16 @@ public class UserInformationServiceimpl implements UserInformationService {
         return false;
     }
 
+    @Override
+    public Boolean updateUserScoreInComplete(String userId, Integer obtainScore) {
+        UserInformation userInformation=userInformationMapper.selectByPrimaryKey(userId);
+        Integer scoreBefore = userInformation.getScore();
+        userInformation.setScore(scoreBefore+obtainScore);
+        if(userInformationMapper.updateByPrimaryKey(userInformation)==1){
+            return true;
+        }
+        return false;
+    }
+
 
 }

@@ -6,11 +6,13 @@ import com.sweetpotatoclock.entity.GoalDayComplete;
 import com.sweetpotatoclock.entity.Group;
 import com.sweetpotatoclock.service.GoalCompleteService;
 import com.sweetpotatoclock.service.GroupService;
+import com.sweetpotatoclock.web.GoalDayCompleteController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,6 +23,8 @@ public class GoalCompleteServiceImpl implements GoalCompleteService {
     GoalCompleteMapper goalCompleteMapper;
     @Autowired
     GroupService groupService;
+    @Autowired
+    GoalDayCompleteController goalDayCompleteController;
 
     /**
      * 根据userId查找出对应userId的打卡目标
@@ -93,11 +97,37 @@ public class GoalCompleteServiceImpl implements GoalCompleteService {
             //计算并添加完成度(旧的完成度*要求连续天数+1）/要求连续天数
             Double completionNew = ((groupUserGoal.getCompletion().doubleValue() * group.getDays()) + 1) / group.getDays();
             groupUserGoal.setCompletion(completionNew);
-            System.out.print(groupUserGoal.getCompletion()+"\n");
+            //System.out.print(groupUserGoal.getCompletion()+"\n");
             goalCompleteMapper.updateById(groupUserGoal);
+            if(completionNew>=0.99){
+                GoalDayComplete goalDayComplete=new GoalDayComplete();
+                goalDayComplete.setGroupId(groupId);
+                goalDayComplete.setUserId(userId);
+                goalDayCompleteController.addGoalDayComplete(goalDayComplete);
+            }
             return true;
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean deleteGroup(Integer groupId) {
+
+        if(goalCompleteMapper.deleteByGroupId(groupId)==1){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean deleteGoalComplete(Integer groupId, String userId) {
+        GoalComplete goalComplete = new GoalComplete();
+        goalComplete.setUserId(userId);
+        goalComplete.setGroupId(groupId);
+        if(goalCompleteMapper.deleteByGroupIdAndUserId(goalComplete)==1){
+            return true;
         }
         return false;
     }

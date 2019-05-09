@@ -33,4 +33,6 @@ public interface RankBetweenGroupService {
     Boolean updateRankBetweenGroup(RankBetweenGroup rankBetweenGroup);
 
     Boolean addRankBetweenGroupInCreate(Integer groupId);
+
+    Boolean deleteRankBetweenGroup(Integer groupId);
 }

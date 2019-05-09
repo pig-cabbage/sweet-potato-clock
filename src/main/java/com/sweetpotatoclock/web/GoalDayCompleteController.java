@@ -1,9 +1,15 @@
 package com.sweetpotatoclock.web;
 
+import com.sweetpotatoclock.dao.GoalCompleteMapper;
 import com.sweetpotatoclock.entity.GoalDayComplete;
+import com.sweetpotatoclock.entity.Group;
+import com.sweetpotatoclock.service.GoalCompleteService;
 import com.sweetpotatoclock.service.GoalDayCompleteService;
+import com.sweetpotatoclock.service.GroupService;
+import com.sweetpotatoclock.service.UserInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +24,12 @@ import java.util.Map;
 public class GoalDayCompleteController {
     @Autowired
     private GoalDayCompleteService goalDayCompleteService;
+    @Autowired
+    private GoalCompleteService goalCompleteService;
+    @Autowired
+    private UserInformationService userInformationService;
+    @Autowired
+    private GroupService groupService;
 
     /**
      * 根据userId获取GoalDayCompltete列表信息
@@ -32,5 +44,19 @@ public class GoalDayCompleteController {
         list = goalDayCompleteService.getGoalDayCompleteByUserId(userId);
         modelMap.put("goaldaycompletelist", list);
         return modelMap;
+    }
+
+    @RequestMapping(value = "/goalDayCompltete",method = RequestMethod.POST)
+    public Map<String,Object> addGoalDayComplete(@RequestBody GoalDayComplete goalDayComplete){
+        Map<String,Object> result = new HashMap<>();
+        if(goalDayCompleteService.addGoalDayComplete(goalDayComplete)){
+            goalCompleteService.deleteGoalComplete(goalDayComplete.getGroupId(),goalDayComplete.getUserId());
+            Group group=groupService.getGroupByGroupId(goalDayComplete.getGroupId());
+            userInformationService.updateUserScoreInComplete(goalDayComplete.getUserId(),group.getObtainScore());
+            result.put("success",1);
+            return result;
+        }
+        result.put("success",0);
+        return result;
     }
 }

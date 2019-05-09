@@ -24,4 +24,8 @@ public interface GoalCompleteMapper {
     List<GoalComplete> selectAll();
 
     int updateById(GoalComplete record);
+
+    int deleteByGroupId(Integer groupId);
+
+    int deleteByGroupIdAndUserId(GoalComplete goalComplete);
 }

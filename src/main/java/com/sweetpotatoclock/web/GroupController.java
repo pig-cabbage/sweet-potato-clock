@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("group")
+@RequestMapping("/group")
 @RestController
 public class GroupController {
     @Autowired
@@ -29,7 +29,7 @@ public class GroupController {
      * @param groupId
      * @return
      */
-    @RequestMapping("getgroupbygroupid")
+    @RequestMapping("/getgroupbygroupid")
     public Map<String,Object> getGroupByGroupId(@RequestParam("groupid") Integer groupId, @RequestParam("userid") String userId){
         Map<String,Object> result=new HashMap<>();
         Group group = groupService.getGroupByGroupId(groupId);
@@ -53,11 +53,23 @@ public class GroupController {
         return result;
     }
 
-    @RequestMapping("findgroupbyconditions")
+    @RequestMapping("/findgroupbyconditions")
     public Map<String,Object> findGroupByConditions(@RequestParam("tag") String tag,@RequestParam("minutes") Integer minutes,@RequestParam("days")Integer days){
         Map<String,Object> result = new HashMap<>();
         result.put("groupListByConditions",groupService.getGroupByCondition(tag,minutes,days));
         return result;
+    }
+
+    @RequestMapping("/updateGroupInfo")
+    public Map<String,Object> updateGroupInfo(@RequestParam("groupid")Integer groupId,@RequestParam("isprivate") Integer isPrivate,@RequestParam("groupname")String groupName){
+        Map<String,Object> result=new HashMap<>();
+        if(groupService.updateGroupNameAndIsprivate(groupId,groupName,isPrivate)){
+            result.put("success",1);
+            return  result;
+        }
+        result.put("success",0);
+        return result;
+
     }
 
 

@@ -13,7 +13,11 @@ public interface GroupService {
 
     Boolean addNewGroup(Group group);
 
+    Boolean deleteGroup(Integer groupId);
+
     List<Group> getAllGroup();
 
     Group updateGroupMemberNumber(Integer groupId);
+
+    Boolean updateGroupNameAndIsprivate(Integer groupId, String groupName, Integer isPrivate);
 }
