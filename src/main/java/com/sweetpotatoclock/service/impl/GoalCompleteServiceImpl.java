@@ -23,8 +23,6 @@ public class GoalCompleteServiceImpl implements GoalCompleteService {
     GoalCompleteMapper goalCompleteMapper;
     @Autowired
     GroupService groupService;
-    @Autowired
-    GoalDayCompleteController goalDayCompleteController;
 
     /**
      * 根据userId查找出对应userId的打卡目标
@@ -82,7 +80,7 @@ public class GoalCompleteServiceImpl implements GoalCompleteService {
     }
 
     @Override
-    public Boolean updateGoalComplete(Integer groupId, String userId) {
+    public GoalComplete updateGoalComplete(Integer groupId, String userId) {
         List<GoalComplete> allGoal= goalCompleteMapper.selectAll();
         GoalComplete groupUserGoal = new GoalComplete();
         Group group=groupService.getGroupByGroupId(groupId);
@@ -99,17 +97,11 @@ public class GoalCompleteServiceImpl implements GoalCompleteService {
             groupUserGoal.setCompletion(completionNew);
             //System.out.print(groupUserGoal.getCompletion()+"\n");
             goalCompleteMapper.updateById(groupUserGoal);
-            if(completionNew>=0.99){
-                GoalDayComplete goalDayComplete=new GoalDayComplete();
-                goalDayComplete.setGroupId(groupId);
-                goalDayComplete.setUserId(userId);
-                goalDayCompleteController.addGoalDayComplete(goalDayComplete);
-            }
-            return true;
+            return groupUserGoal;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return groupUserGoal;
     }
 
     @Override

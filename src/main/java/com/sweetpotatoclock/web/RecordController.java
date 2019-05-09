@@ -24,7 +24,8 @@ public class RecordController {
     private ComputeRankBetweenGroupService computeRankBetweenGroupService;
     @Autowired
     private GoalCompleteService goalCompleteService;
-
+    @Autowired
+    private GoalDayCompleteController goalDayCompleteController;
     /**
      * 打卡完成后增加记录，更新排名
      * @param record
@@ -37,7 +38,7 @@ public class RecordController {
         if(recordService.addRecord(record)==true){
             try {
                 //更新goal_complete表
-                goalCompleteService.updateGoalComplete(record.getGroupId(),record.getUserId());
+                GoalComplete goalComplete= goalCompleteService.updateGoalComplete(record.getGroupId(),record.getUserId());
                 RankInGroup rankInGroup = new RankInGroup();
                 Integer groupId = record.getGroupId();
                 Integer minutes = record.getMinutes();
@@ -56,6 +57,13 @@ public class RecordController {
                         results.put("success", 1);
                         return results;
                     }
+                }
+                Double completionNew=goalComplete.getCompletion();
+                if(completionNew>=0.99){
+                    GoalDayComplete goalDayComplete=new GoalDayComplete();
+                    goalDayComplete.setGroupId(groupId);
+                    goalDayComplete.setUserId(record.getUserId());
+                    goalDayCompleteController.addGoalDayComplete(goalDayComplete);
                 }
 
             } catch (Exception e) {

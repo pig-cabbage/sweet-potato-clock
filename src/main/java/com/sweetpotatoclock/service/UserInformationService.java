@@ -15,7 +15,7 @@ public interface UserInformationService {
 
     int addUserInformationInLogin(String userId,String nickName,String avatarUrl);
 
-    Boolean updateUserScoreInJoin(String userId,Integer joinScore);
+    int updateUserScoreInJoin(String userId,Integer joinScore);
 
     Boolean updateUserScoreInComplete(String userId,Integer obtainScore);
 

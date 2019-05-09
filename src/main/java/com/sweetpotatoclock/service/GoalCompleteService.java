@@ -2,6 +2,7 @@ package com.sweetpotatoclock.service;
 
 
 import com.sweetpotatoclock.entity.GoalComplete;
+import com.sweetpotatoclock.entity.Group;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface GoalCompleteService {
 
     Boolean addGoalCompleteInCreate(Integer groupId, String userId);
 
-    Boolean updateGoalComplete(Integer groupId,String userId);
+    GoalComplete updateGoalComplete(Integer groupId,String userId);
 
     Boolean deleteGroup(Integer groupId);
 
