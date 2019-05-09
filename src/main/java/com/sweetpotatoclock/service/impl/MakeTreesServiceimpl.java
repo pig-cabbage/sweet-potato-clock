@@ -12,6 +12,12 @@ public class MakeTreesServiceimpl implements MakeTreesService {
     @Autowired
     private MakeTreesMapper makeTreesMapper;
 
+
+    @Override
+    public MakeTrees getMakeTreesByUserId(String userId){
+        return makeTreesMapper.selectByPrimaryKey(userId);
+    }
+
     @Override
     public void modify(String userId,int number) {
         MakeTrees em=makeTreesMapper.selectByPrimaryKey(userId);
@@ -20,6 +26,5 @@ public class MakeTreesServiceimpl implements MakeTreesService {
         em.setArea(new_area);
         em.setTreeNumber(new_number);
         makeTreesMapper.updateByPrimaryKey(em);
-
     }
 }

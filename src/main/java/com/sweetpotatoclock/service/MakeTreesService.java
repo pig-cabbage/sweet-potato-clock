@@ -9,4 +9,10 @@ public interface MakeTreesService {
      * @return
      */
     void modify(String userId,int number);
+    /**
+     * 根据user_id获取树木页的信息
+     *
+     * @return
+     */
+    MakeTrees getMakeTreesByUserId(String userId);
 }
