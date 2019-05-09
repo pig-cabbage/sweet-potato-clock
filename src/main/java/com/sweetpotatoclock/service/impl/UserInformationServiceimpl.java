@@ -57,10 +57,11 @@ public class UserInformationServiceimpl implements UserInformationService {
         UserInformation userInformation=userInformationMapper.selectByPrimaryKey(userId);
         Integer scoreBefore = userInformation.getScore();
         userInformation.setScore(scoreBefore-joinScore);
+        System.out.print(userInformation.getScore()+"\n");
         if(userInformation.getScore()<0){
             return 2;
         }
-        if(userInformationMapper.updateByPrimaryKey(userInformation)==1){
+        else if(userInformationMapper.updateByPrimaryKey(userInformation)==1){
             return 1;
         }
         return 0;
@@ -98,9 +99,10 @@ public class UserInformationServiceimpl implements UserInformationService {
                 break;
             }
         }
+        System.out.print(isClock+"\n");
         if(isClock==0){
             Integer beforeDays=userInformation.getDaysSum();
-            userInformation.setMinutesSum(beforeDays+1);
+            userInformation.setDaysSum(beforeDays+1);
         }
         if(userInformationMapper.updateByPrimaryKey(userInformation)==1){
             return true;

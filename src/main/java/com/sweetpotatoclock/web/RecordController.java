@@ -41,6 +41,8 @@ public class RecordController {
         System.out.print("record:"+record+"\n");
         if(recordService.addRecord(record)==true){
             try {
+                //更新userInformation中的minutesSum和daysSum
+                userInformationService.updateUserScoreInClock(record.getUserId(),record.getMinutes());
                 //更新goal_complete表
                 GoalComplete goalComplete= goalCompleteService.updateGoalComplete(record.getGroupId(),record.getUserId());
                 RankInGroup rankInGroup = new RankInGroup();
@@ -52,8 +54,6 @@ public class RecordController {
                 rankInGroup.setDayMinutes(minutes);
                 //将RankInGroup中的weekMinutes更新
                 RankInGroup rankInGroup1=rankInGroupService.updateWeekMinutes(rankInGroup);
-                //更新userInformation中的minutesSum
-                userInformationService.updateUserScoreInClock(record.getUserId(),record.getMinutes());
                 //更新数据库rank_in_group表
                 if(rankInGroupService.updateRankInGroup(rankInGroup1)==true){
                     //计算新的day_average_minutes和week_average_minutes
