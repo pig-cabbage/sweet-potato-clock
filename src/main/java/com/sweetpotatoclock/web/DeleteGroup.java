@@ -25,8 +25,8 @@ public class DeleteGroup {
     private RecordService recordService;
 
     @RequestMapping("/deletegroup")
-    public Map<String,Object> deleteGroup(@RequestParam("groupid")Integer groupId){
-        Map<String,Object> result = new HashMap<>();
+    public Map<String,Integer> deleteGroup(@RequestParam("groupid")Integer groupId){
+        Map<String,Integer> result = new HashMap<>();
         if(goalCompleteService.deleteGroup(groupId)){
             rankInGroupService.deleteRankInGroup(groupId);
             rankBetweenGroupService.deleteRankBetweenGroup(groupId);

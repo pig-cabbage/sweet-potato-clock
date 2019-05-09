@@ -19,4 +19,6 @@ public interface UserInformationService {
 
     Boolean updateUserScoreInComplete(String userId,Integer obtainScore);
 
+    Boolean updateUserScoreInClock(String userId, Integer minutes);
+
 }
