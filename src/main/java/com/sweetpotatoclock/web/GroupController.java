@@ -33,9 +33,15 @@ public class GroupController {
     public Map<String,Object> getGroupByGroupId(@RequestParam("groupid") Integer groupId, @RequestParam("userid") String userId){
         Map<String,Object> result=new HashMap<>();
         Group group = groupService.getGroupByGroupId(groupId);
+        //判断group是否存在
+        if(group.getGroupId()==null){
+            result.put("groupInfo",0);
+            return result;
+        }
         List<GoalComplete> goalCompleteList = goalCompleteService.queryGoalByGroupId(groupId);
         UserInformation userInformation = userInformationService.getUserInformationByUserId(group.getCaptainId());
         List<String> memberName=new ArrayList<>();
+        //判断user是不是group成员
         int isMember=0;
         //System.out.print(userId+"\n");
         for(int i=0;i<goalCompleteList.size();i++){

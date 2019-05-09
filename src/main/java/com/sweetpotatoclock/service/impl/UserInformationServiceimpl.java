@@ -1,7 +1,9 @@
 package com.sweetpotatoclock.service.impl;
 
 import com.sweetpotatoclock.dao.UserInformationMapper;
+import com.sweetpotatoclock.entity.GoalComplete;
 import com.sweetpotatoclock.entity.UserInformation;
+import com.sweetpotatoclock.service.GoalCompleteService;
 import com.sweetpotatoclock.service.UserInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,8 @@ import java.util.List;
 public class UserInformationServiceimpl implements UserInformationService {
     @Autowired
     private UserInformationMapper userInformationMapper;
-
+    @Autowired
+    private GoalCompleteService goalCompleteService;
 
     @Override
     public UserInformation getUserInformationByUserId(String userId) {
@@ -43,11 +46,37 @@ public class UserInformationServiceimpl implements UserInformationService {
         }
     }
 
+    /**
+     * 加入小组时更新用户积分
+     * @param userId
+     * @param joinScore
+     * @return
+     */
     @Override
-    public Boolean updateUserScoreInJoin(String userId, Integer joinScore) {
+    public int updateUserScoreInJoin(String userId, Integer joinScore) {
         UserInformation userInformation=userInformationMapper.selectByPrimaryKey(userId);
         Integer scoreBefore = userInformation.getScore();
         userInformation.setScore(scoreBefore-joinScore);
+        if(userInformation.getScore()<0){
+            return 2;
+        }
+        if(userInformationMapper.updateByPrimaryKey(userInformation)==1){
+            return 1;
+        }
+        return 0;
+    }
+
+    /**
+     * 打卡目标完成后update用户的积分
+     * @param userId
+     * @param obtainScore
+     * @return
+     */
+    @Override
+    public Boolean updateUserScoreInComplete(String userId, Integer obtainScore) {
+        UserInformation userInformation=userInformationMapper.selectByPrimaryKey(userId);
+        Integer scoreBefore = userInformation.getScore();
+        userInformation.setScore(scoreBefore+obtainScore);
         if(userInformationMapper.updateByPrimaryKey(userInformation)==1){
             return true;
         }
@@ -55,10 +84,24 @@ public class UserInformationServiceimpl implements UserInformationService {
     }
 
     @Override
-    public Boolean updateUserScoreInComplete(String userId, Integer obtainScore) {
+    public Boolean updateUserScoreInClock(String userId, Integer minutes) {
         UserInformation userInformation=userInformationMapper.selectByPrimaryKey(userId);
-        Integer scoreBefore = userInformation.getScore();
-        userInformation.setScore(scoreBefore+obtainScore);
+        //更新minutesSum
+        Integer beforeMinutes=userInformation.getMinutesSum();
+        userInformation.setMinutesSum(beforeMinutes+minutes);
+        //更新daySum
+        int isClock=0;
+        List<GoalComplete> goalCompleteList=goalCompleteService.queryGoalByUserId(userId);
+        for(int i=0;i<goalCompleteList.size();i++){
+            if(goalCompleteList.get(i).getIsClocked()==1){
+                isClock=1;
+                break;
+            }
+        }
+        if(isClock==0){
+            Integer beforeDays=userInformation.getDaysSum();
+            userInformation.setMinutesSum(beforeDays+1);
+        }
         if(userInformationMapper.updateByPrimaryKey(userInformation)==1){
             return true;
         }

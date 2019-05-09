@@ -6,7 +6,9 @@ import com.sweetpotatoclock.service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class RecordServiceImpl implements RecordService {
@@ -35,5 +37,22 @@ public class RecordServiceImpl implements RecordService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<Record> getRecordByUserId(String userId) {
+        List<Record> allRecord=recordMapper.selectAll();
+        List<Record> recordList=new ArrayList<>();
+        //倒序添加元素保证时间靠后的在前
+        try {
+            for(int i=allRecord.size();i>0;i--){
+                if(allRecord.get(i-1).getUserId().equals(userId)){
+                    recordList.add(allRecord.get(i-1));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return recordList;
     }
 }

@@ -3,12 +3,11 @@ package com.sweetpotatoclock.web;
 import com.sweetpotatoclock.entity.*;
 import com.sweetpotatoclock.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -24,6 +23,12 @@ public class RecordController {
     private ComputeRankBetweenGroupService computeRankBetweenGroupService;
     @Autowired
     private GoalCompleteService goalCompleteService;
+    @Autowired
+    private GoalDayCompleteController goalDayCompleteController;
+    @Autowired
+    private UserInformationService userInformationService;
+    @Autowired
+    private GroupService groupService;
 
     /**
      * 打卡完成后增加记录，更新排名
@@ -37,7 +42,7 @@ public class RecordController {
         if(recordService.addRecord(record)==true){
             try {
                 //更新goal_complete表
-                goalCompleteService.updateGoalComplete(record.getGroupId(),record.getUserId());
+                GoalComplete goalComplete= goalCompleteService.updateGoalComplete(record.getGroupId(),record.getUserId());
                 RankInGroup rankInGroup = new RankInGroup();
                 Integer groupId = record.getGroupId();
                 Integer minutes = record.getMinutes();
@@ -47,6 +52,8 @@ public class RecordController {
                 rankInGroup.setDayMinutes(minutes);
                 //将RankInGroup中的weekMinutes更新
                 RankInGroup rankInGroup1=rankInGroupService.updateWeekMinutes(rankInGroup);
+                //更新userInformation中的minutesSum
+                userInformationService.updateUserScoreInClock(record.getUserId(),record.getMinutes());
                 //更新数据库rank_in_group表
                 if(rankInGroupService.updateRankInGroup(rankInGroup1)==true){
                     //计算新的day_average_minutes和week_average_minutes
@@ -57,6 +64,13 @@ public class RecordController {
                         return results;
                     }
                 }
+                Double completionNew=goalComplete.getCompletion();
+                if(completionNew>=0.99){
+                    GoalDayComplete goalDayComplete=new GoalDayComplete();
+                    goalDayComplete.setGroupId(groupId);
+                    goalDayComplete.setUserId(record.getUserId());
+                    goalDayCompleteController.addGoalDayComplete(goalDayComplete);
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -64,5 +78,18 @@ public class RecordController {
         }
         results.put("success",0);
         return results;
+    }
+
+    @RequestMapping("/getrecordbyuserid")
+    public Map<String,Object> getRecordByUserId(@RequestParam("userid") String userId){
+        Map<String,Object> result = new HashMap<>();
+        List<Record> recordList=recordService.getRecordByUserId(userId);
+        List<String> groupNameList = new ArrayList<>();
+        for(int i=0;i<recordList.size();i++){
+            groupNameList.add(groupService.getGroupByGroupId(recordList.get(i).getGroupId()).getGroupName());
+        }
+        result.put("records",recordList);
+        result.put("groupNames",groupNameList);
+        return result;
     }
 }

@@ -35,7 +35,11 @@ public class JoinGroupController {
                 Integer memberBefore = group.getMemberNumber() - 1;
                 Integer memberNew = group.getMemberNumber();
                 //扣除对应userId的积分
-                userInformationService.updateUserScoreInJoin(userId, group.getJoinScore());
+                int updateUser = userInformationService.updateUserScoreInJoin(userId, group.getJoinScore());
+                if(updateUser==2){
+                    res.put("success",2);
+                    return res;
+                }
                 rankInGroupService.addRankInGroupInCreate(groupId, userId);
                 //计算RankInGroup、RankBetweenGroup中的数值并更新
                 RankBetweenGroup rankBetweenGroup = rankBetweenGroupService.getRankBetweenGroupById(groupId);
