@@ -21,7 +21,7 @@ public class JoinGroupControllerTest {
     public void joinGroup() {
         Integer groupId=7;
         String userId="1";
-        Map<String,Object> res=joinGroupController.joinGroup(groupId,userId);
+        Map<String,Integer> res=joinGroupController.joinGroup(groupId,userId);
         System.out.print(res);
     }
 }

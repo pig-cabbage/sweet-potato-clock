@@ -23,9 +23,9 @@ public class CreateGroupControllerTest {
     public void createGroupTest() {
         Group group = new Group();
         group.setTag("学习");
-        group.setDays(7);
-        group.setMinutes(1);
-        group.setCaptainId("oAYW15KDTSc8zloBj13wNgt3b2nc");
+        group.setDays(3);
+        group.setMinutes(7);
+        group.setCaptainId("1");
         group.setIsPrivate((byte) 0);
         Map<String,Object> result = new HashMap<>();
         result = createGroupController.createGroup(group);
