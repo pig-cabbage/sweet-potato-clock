@@ -1,6 +1,7 @@
 package com.sweetpotatoclock.dao;
 
 import com.sweetpotatoclock.entity.AchieveList;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import static org.junit.Assert.*;
 public class AchieveListMapperTest {
     @Autowired
     private  AchieveListMapper achieveListMapper;
+    @Ignore
     @Test
     public void selectAchieveListByUserId() {
         List<AchieveList> returnlist=achieveListMapper.selectAchieveListByUserId("1");

@@ -2,6 +2,7 @@ package com.sweetpotatoclock.service.impl;
 
 import com.sweetpotatoclock.entity.GoalComplete;
 import com.sweetpotatoclock.service.GoalCompleteService;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class GoalCompleteServiceImplTest {
     @Autowired
     private GoalCompleteService goalCompleteService;
     @Test
+    @Ignore
     public void queryGoalByUserId() {
         List<GoalComplete> list=goalCompleteService.queryGoalByUserId("1");
         assertEquals(1,list.size());

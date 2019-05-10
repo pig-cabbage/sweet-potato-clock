@@ -1,6 +1,7 @@
 package com.sweetpotatoclock.dao;
 
 import com.sweetpotatoclock.entity.AchieveInfo;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,14 @@ public class AchieveInfoMapperTest {
     @Autowired
     private AchieveInfoMapper achieveInfoMapper;
 
+    @Ignore
     @Test
     public void selectAchieveNameByAchieveId() {
         String result = achieveInfoMapper.selectByPrimaryKey(1).getAchieveName();
 
         System.out.print(result);
     }
-
+    @Ignore
     @Test
     public void selectAll() {
         List<AchieveInfo> returnlist=achieveInfoMapper.selectAll();

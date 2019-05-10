@@ -29,7 +29,7 @@ public class UserInformationMapperTest {
     @Ignore
     public void insert() {
     }
-
+    @Ignore
     @Test
     public void selectByPrimaryKey() {
         UserInformation userInformation = userInformationMapper.selectByPrimaryKey("2");

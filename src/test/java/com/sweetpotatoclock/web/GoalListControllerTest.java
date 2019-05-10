@@ -1,5 +1,6 @@
 package com.sweetpotatoclock.web;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class GoalListControllerTest {
 
     @Autowired
     private GoalListController goalListController;
-
+    @Ignore
     @Test
     public void displayGoal() {
         Map<String,Object> map = goalListController.displayGoal("1");
