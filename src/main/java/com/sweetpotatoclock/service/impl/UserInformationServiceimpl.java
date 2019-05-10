@@ -40,7 +40,7 @@ public class UserInformationServiceimpl implements UserInformationService {
             userInformation.setDaysSum(0);
             userInformation.setMinutesSum(0);
             userInformation.setContinueDays(0);
-            userInformation.setScore(0);
+            userInformation.setScore(100);
             userInformation.setMotto(avatarUrl);
             return userInformationMapper.insert(userInformation);
         }
