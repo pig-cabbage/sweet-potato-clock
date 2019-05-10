@@ -19,12 +19,11 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
-    @RequestMapping(value="/searchbygroupname",method = RequestMethod.GET)
+    @RequestMapping(value="/searchbygroupname")
     public Map<String,Object> searchByGroupName(@RequestParam("groupName") String groupName){
-        Map<String, Object> modelMap =new HashMap<String, Object>();
-        List<Group> groupList=searchService.searchGroupByGroupName(groupName);
-        System.out.println(groupList.get(0).toString());
-        modelMap.put("groupList",groupList);
+        Map<String, Object> modelMap =new HashMap<>();
+
+        modelMap.put("groupList", searchService.searchGroupByGroupName(groupName));
         return modelMap;
     }
 
