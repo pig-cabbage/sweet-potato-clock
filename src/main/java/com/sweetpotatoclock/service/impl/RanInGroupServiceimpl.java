@@ -1,6 +1,7 @@
 package com.sweetpotatoclock.service.impl;
 
 import com.sweetpotatoclock.dao.RankInGroupMapper;
+import com.sweetpotatoclock.dao.UserInformationMapper;
 import com.sweetpotatoclock.entity.RankInGroup;
 import com.sweetpotatoclock.service.RankInGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,13 @@ import java.util.List;
 public class RanInGroupServiceimpl implements RankInGroupService {
     @Autowired
     private RankInGroupMapper rankInGroupMapper;
+    @Autowired
+    private UserInformationMapper userInformationMapper;
+
 
     private List<RankInGroup> list = new ArrayList<>();
+
+    private List<String>nameList=new ArrayList<>();
 
     @Override
     public void getRankInGroupListByGroupId(Integer groupId) {
@@ -97,6 +103,14 @@ public class RanInGroupServiceimpl implements RankInGroupService {
             return true;
         }
         return false;
+    }
+    @Override
+    public List<String> returnNameList(){
+        for(int i=0;i<list.size();i++){
+            String name=userInformationMapper.selectByPrimaryKey(list.get(i).getUserId()).getUserNickname();
+            nameList.add(name);
+        }
+        return nameList;
     }
 
 }

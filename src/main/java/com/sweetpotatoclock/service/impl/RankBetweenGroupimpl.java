@@ -1,5 +1,6 @@
 package com.sweetpotatoclock.service.impl;
 
+import com.sweetpotatoclock.dao.GroupMapper;
 import com.sweetpotatoclock.dao.RankBetweenGroupMapper;
 import com.sweetpotatoclock.dao.RankInGroupMapper;
 import com.sweetpotatoclock.entity.RankBetweenGroup;
@@ -17,6 +18,9 @@ import java.util.List;
 public class RankBetweenGroupimpl implements RankBetweenGroupService {
     @Autowired
     private RankBetweenGroupMapper rankBetweenGroupMapper;
+
+    @Autowired
+    private GroupMapper groupMapper;
 
     private List<RankBetweenGroup> list = new ArrayList<>();
 
@@ -85,5 +89,14 @@ public class RankBetweenGroupimpl implements RankBetweenGroupService {
             return true;
         }
         return false;
+    }
+    @Override
+    public List<String>returnNameList(){
+        List<String>returnList=new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            String name=groupMapper.selectByPrimaryKey(list.get(i).getGroupId()).getGroupName();
+            returnList.add(name);
+        }
+        return returnList;
     }
 }

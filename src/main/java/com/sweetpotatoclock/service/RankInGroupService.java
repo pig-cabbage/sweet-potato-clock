@@ -36,4 +36,10 @@ public interface RankInGroupService {
     Boolean addRankInGroupInCreate(Integer groupId,String userId);
 
     Boolean deleteRankInGroup(Integer groupId);
+    /**
+     * 返回对应的名称列表
+     *
+     * @return
+     */
+    List<String> returnNameList();
 }

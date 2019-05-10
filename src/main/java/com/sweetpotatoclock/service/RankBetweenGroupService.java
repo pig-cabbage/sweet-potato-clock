@@ -35,4 +35,10 @@ public interface RankBetweenGroupService {
     Boolean addRankBetweenGroupInCreate(Integer groupId);
 
     Boolean deleteRankBetweenGroup(Integer groupId);
+    /**
+     * 返回对应的名称列表
+     *
+     * @return
+     */
+    List<String>returnNameList();
 }
