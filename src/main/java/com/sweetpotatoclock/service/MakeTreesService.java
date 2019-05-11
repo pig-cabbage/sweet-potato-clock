@@ -22,7 +22,7 @@ public interface MakeTreesService {
      *
      * @return
      */
-    void rankTrees();
+    List<MakeTrees> rankTrees();
 
     List<String> returnNameList();
 

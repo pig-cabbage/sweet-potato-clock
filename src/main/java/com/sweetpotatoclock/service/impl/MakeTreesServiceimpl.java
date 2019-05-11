@@ -40,6 +40,8 @@ public class MakeTreesServiceimpl implements MakeTreesService {
         makeTreesMapper.updateByPrimaryKey(em);
     }
 
+
+
     @Override
     public List<MakeTrees> getList(){
         list=makeTreesMapper.selectAll();
@@ -59,16 +61,19 @@ public class MakeTreesServiceimpl implements MakeTreesService {
     }
 
     @Override
-    public void rankTrees(){
+    public List<MakeTrees> rankTrees(){
         Collections.sort(list, new Comparator<MakeTrees>() {
             @Override
             public int compare(MakeTrees t1, MakeTrees t2) {
                 return t2.getArea().compareTo(t1.getArea());
             }
         });
+        return list;
     }
     @Override
     public List<String> returnNameList(){
+        List<String>nameList=new ArrayList<>();
+        List<MakeTrees>list=rankTrees();
         for(int i=0;i<list.size();i++){
             String name=userInformationMapper.selectByPrimaryKey(list.get(i).getUserId()).getUserNickname();
             nameList.add(name);

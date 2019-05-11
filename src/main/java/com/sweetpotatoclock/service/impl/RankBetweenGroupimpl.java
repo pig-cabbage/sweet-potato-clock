@@ -22,13 +22,9 @@ public class RankBetweenGroupimpl implements RankBetweenGroupService {
     @Autowired
     private GroupMapper groupMapper;
 
-    private List<RankBetweenGroup> list = new ArrayList<>();
 
-    @Override
-    public void getRankBetweenGroupList() {
-        list = rankBetweenGroupMapper.selectAll();
 
-    }
+
 
     @Override
     public RankBetweenGroup getRankBetweenGroupById(Integer groupId) {
@@ -36,27 +32,31 @@ public class RankBetweenGroupimpl implements RankBetweenGroupService {
     }
 
     @Override
-    public void rankByDayAverageMinutes() {
+    public List<RankBetweenGroup> rankByDayAverageMinutes() {
+        List<RankBetweenGroup>list=new ArrayList<>();
+        list=rankBetweenGroupMapper.selectAll();
         Collections.sort(list, new Comparator<RankBetweenGroup>() {
             @Override
             public int compare(RankBetweenGroup t1, RankBetweenGroup t2) {
                 return t2.getDayAverageMinutes().compareTo(t1.getDayAverageMinutes());
             }
         });
+        return list;
     }
 
-    public void rankByWeekAverageMinutes() {
+    public List<RankBetweenGroup> rankByWeekAverageMinutes() {
+        List<RankBetweenGroup>list=new ArrayList<>();
+        list=rankBetweenGroupMapper.selectAll();
         Collections.sort(list, new Comparator<RankBetweenGroup>() {
             @Override
             public int compare(RankBetweenGroup t1, RankBetweenGroup t2) {
                 return t2.getWeekAverageMinutes().compareTo(t1.getWeekAverageMinutes());
             }
         });
-    }
-
-    public List<RankBetweenGroup> getList() {
         return list;
     }
+
+
 
     @Override
     public Boolean updateRankBetweenGroup(RankBetweenGroup rankBetweenGroup) {
@@ -91,8 +91,20 @@ public class RankBetweenGroupimpl implements RankBetweenGroupService {
         return false;
     }
     @Override
-    public List<String>returnNameList(){
+    public List<String>returnNameListDay(){
         List<String>returnList=new ArrayList<>();
+        List<RankBetweenGroup>list=rankByDayAverageMinutes();
+        for(int i=0;i<list.size();i++){
+            String name=groupMapper.selectByPrimaryKey(list.get(i).getGroupId()).getGroupName();
+            returnList.add(name);
+        }
+        return returnList;
+    }
+
+    @Override
+    public List<String>returnNameListWeek(){
+        List<String>returnList=new ArrayList<>();
+        List<RankBetweenGroup>list=rankByWeekAverageMinutes();
         for(int i=0;i<list.size();i++){
             String name=groupMapper.selectByPrimaryKey(list.get(i).getGroupId()).getGroupName();
             returnList.add(name);

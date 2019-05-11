@@ -18,7 +18,7 @@ public class RankListControllerTest {
 
     @Test
     public void getrankingroupday() {
-        Map<String,Object> returnmap=rankListController.getrankingroupday(4);
+        Map<String,Object> returnmap=rankListController.getrankingroupday(9);
         assertEquals(2,returnmap.size());
     }
 

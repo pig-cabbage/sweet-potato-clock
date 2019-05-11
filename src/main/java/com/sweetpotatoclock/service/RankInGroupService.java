@@ -10,14 +10,14 @@ public interface RankInGroupService {
      *
      * @return
      */
-    void getRankInGroupListByGroupId(Integer groupId);
+
 
     /**
      * 依据每日打卡时长对获取RankInGroup列表进行降序排序
      *
      * @return
      */
-    void rankByDayMinutes();
+    List<RankInGroup> rankByDayMinutes(Integer groupId);
 
     /**
      * 依据每周打卡时长对获取RankInGroup列表进行降序排序
@@ -25,21 +25,24 @@ public interface RankInGroupService {
      * @return
      */
 
-    void rankByWeekMinutes();
+    List<RankInGroup> rankByWeekMinutes(Integer groupId);
 
-    List<RankInGroup> getList();
+
 
     Boolean updateRankInGroup(RankInGroup rankInGroup);
 
     RankInGroup updateWeekMinutes(RankInGroup rankInGroup);
 
-    Boolean addRankInGroupInCreate(Integer groupId,String userId);
+    Boolean addRankInGroupInCreate(Integer groupId, String userId);
 
     Boolean deleteRankInGroup(Integer groupId);
+
     /**
      * 返回对应的名称列表
      *
      * @return
      */
-    List<String> returnNameList();
+    List<String> returnNameListDay(Integer groupId);
+
+    List<String> returnNameListWeek(Integer groupId);
 }
