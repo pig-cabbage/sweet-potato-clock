@@ -26,13 +26,13 @@ public class RankBetweenController {
     @RequestMapping(value = "/getrankbetweengroupday", method = RequestMethod.GET)
     public Map<String, Object> getrankbetweengroupday( ) {
         Map<String, Object> modelMap = new HashMap<String, Object>();
-        List<RankBetweenGroup> list = new ArrayList<>();
+
         rankBetweenGroupService.getRankBetweenGroupList();
         rankBetweenGroupService.rankByDayAverageMinutes();
-        list = rankBetweenGroupService.getList();
-        List<String>nameList=rankBetweenGroupService.returnNameList();
-        modelMap.put("list", list);
-        modelMap.put("nameList",nameList);
+
+
+        modelMap.put("list", rankBetweenGroupService.getList());
+        modelMap.put("nameList",rankBetweenGroupService.returnNameList());
         return modelMap;
 
     }
@@ -45,13 +45,13 @@ public class RankBetweenController {
     @RequestMapping(value = "/getrankbetweengroupweek", method = RequestMethod.GET)
     public Map<String, Object> getrankbetweengroupweek() {
         Map<String, Object> modelMap = new HashMap<String, Object>();
-        List<RankBetweenGroup> list = new ArrayList<>();
+
         rankBetweenGroupService.getRankBetweenGroupList();
         rankBetweenGroupService.rankByWeekAverageMinutes();
-        list = rankBetweenGroupService.getList();
-        List<String>nameList=rankBetweenGroupService.returnNameList();
-        modelMap.put("list", list);
-        modelMap.put("nameList",nameList);
+
+
+        modelMap.put("list",  rankBetweenGroupService.getList());
+        modelMap.put("nameList",rankBetweenGroupService.returnNameList());
         return modelMap;
 
     }
