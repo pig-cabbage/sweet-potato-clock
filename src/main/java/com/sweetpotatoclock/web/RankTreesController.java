@@ -22,10 +22,10 @@ public class RankTreesController {
     public Map<String,Object> rankTrees(){
         Map<String,Object>returnMap=new HashMap<String,Object>();
         makeTreesService.rankTrees();
-        List<MakeTrees>list=makeTreesService.getList();
-        List<String>nameList=makeTreesService.returnNameList();
-        returnMap.put("list",list);
-        returnMap.put("nameList",nameList);
+        makeTreesService.getList();
+        makeTreesService.returnNameList();
+        returnMap.put("list",makeTreesService.getList());
+        returnMap.put("nameList",makeTreesService.returnNameList());
             return returnMap;
     }
 }

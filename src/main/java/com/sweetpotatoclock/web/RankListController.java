@@ -34,15 +34,14 @@ public class RankListController {
     @RequestMapping(value = "/getrankingroupday", method = RequestMethod.GET)
     public Map<String, Object> getrankingroupday(@RequestParam("groupid") Integer groupId) {
         Map<String, Object> modelMap = new HashMap<String, Object>();
-        List<RankInGroup> list = new ArrayList<>();
+
         rankInGroupService.getRankInGroupListByGroupId(groupId);
         rankInGroupService.rankByDayMinutes();
-        list = rankInGroupService.getList();
+
         List<String>nameList=rankInGroupService.returnNameList();
-        modelMap.put("list", list);
-        modelMap.put("nameList",nameList);
-        System.out.println(nameList.toString());
-        System.out.println(list.toString());
+        modelMap.put("list", rankInGroupService.getList());
+        modelMap.put("nameList",rankInGroupService.returnNameList());
+
         return modelMap;
 
     }
@@ -55,15 +54,14 @@ public class RankListController {
     @RequestMapping(value = "/getrankingroupweek", method = RequestMethod.GET)
     public Map<String, Object> getrankingroupweek(@RequestParam("groupid") Integer groupId) {
         Map<String, Object> modelMap = new HashMap<String, Object>();
-        List<RankInGroup> list = new ArrayList<>();
+
         rankInGroupService.getRankInGroupListByGroupId(groupId);
         rankInGroupService.rankByWeekMinutes();
-        list = rankInGroupService.getList();
-        List<String>nameList=rankInGroupService.returnNameList();
-        modelMap.put("list", list);
-        modelMap.put("nameList",nameList);
-        System.out.println(nameList.toString());
-        System.out.println(list.toString());
+
+
+        modelMap.put("list", rankInGroupService.getList());
+        modelMap.put("nameList",rankInGroupService.returnNameList());
+
         return modelMap;
     }
 
