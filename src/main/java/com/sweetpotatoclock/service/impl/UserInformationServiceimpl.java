@@ -4,6 +4,7 @@ import com.sweetpotatoclock.dao.UserInformationMapper;
 import com.sweetpotatoclock.entity.GoalComplete;
 import com.sweetpotatoclock.entity.UserInformation;
 import com.sweetpotatoclock.service.GoalCompleteService;
+import com.sweetpotatoclock.service.MakeTreesService;
 import com.sweetpotatoclock.service.UserInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class UserInformationServiceimpl implements UserInformationService {
     private UserInformationMapper userInformationMapper;
     @Autowired
     private GoalCompleteService goalCompleteService;
+    @Autowired
+    private MakeTreesService makeTreesService;
 
     @Override
     public UserInformation getUserInformationByUserId(String userId) {
@@ -42,8 +45,11 @@ public class UserInformationServiceimpl implements UserInformationService {
             userInformation.setContinueDays(0);
             userInformation.setScore(100);
             userInformation.setMotto(avatarUrl);
-            return userInformationMapper.insert(userInformation);
+            if(makeTreesService.addMakeTreesInLogin(userId)) {
+                return userInformationMapper.insert(userInformation);
+            }
         }
+        return 0;
     }
 
     /**

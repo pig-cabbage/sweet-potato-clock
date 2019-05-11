@@ -3,11 +3,9 @@ package com.sweetpotatoclock.service.impl;
 import com.sweetpotatoclock.dao.MakeTreesMapper;
 import com.sweetpotatoclock.dao.UserInformationMapper;
 import com.sweetpotatoclock.entity.MakeTrees;
-import com.sweetpotatoclock.entity.RankInGroup;
 import com.sweetpotatoclock.service.MakeTreesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,6 +44,18 @@ public class MakeTreesServiceimpl implements MakeTreesService {
     public List<MakeTrees> getList(){
         list=makeTreesMapper.selectAll();
         return list;
+    }
+
+    @Override
+    public Boolean addMakeTreesInLogin(String userid) {
+        MakeTrees makeTrees=new MakeTrees();
+        makeTrees.setUserId(userid);
+        makeTrees.setArea((double) 0);
+        makeTrees.setTreeNumber(0);
+        if(makeTreesMapper.insert(makeTrees)==1){
+            return true;
+        }
+        return false;
     }
 
     @Override
