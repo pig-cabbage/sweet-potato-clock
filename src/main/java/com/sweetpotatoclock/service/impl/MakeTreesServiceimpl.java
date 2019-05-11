@@ -21,10 +21,7 @@ public class MakeTreesServiceimpl implements MakeTreesService {
     @Autowired
     private UserInformationMapper userInformationMapper;
 
-    private List<MakeTrees> list=new ArrayList<>();
 
-
-    private List<String>nameList=new ArrayList<>();
 
 
     @Override
@@ -42,23 +39,24 @@ public class MakeTreesServiceimpl implements MakeTreesService {
         makeTreesMapper.updateByPrimaryKey(em);
     }
 
-    @Override
-    public List<MakeTrees> getList(){
-        list=makeTreesMapper.selectAll();
-        return list;
-    }
+
 
     @Override
-    public void rankTrees(){
+    public List<MakeTrees> rankTrees(){
+        List<MakeTrees>list=new ArrayList<>();
+        list=makeTreesMapper.selectAll();
         Collections.sort(list, new Comparator<MakeTrees>() {
             @Override
             public int compare(MakeTrees t1, MakeTrees t2) {
                 return t2.getArea().compareTo(t1.getArea());
             }
         });
+        return list;
     }
     @Override
     public List<String> returnNameList(){
+        List<String>nameList=new ArrayList<>();
+        List<MakeTrees>list=rankTrees();
         for(int i=0;i<list.size();i++){
             String name=userInformationMapper.selectByPrimaryKey(list.get(i).getUserId()).getUserNickname();
             nameList.add(name);

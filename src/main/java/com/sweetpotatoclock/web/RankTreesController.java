@@ -21,10 +21,8 @@ public class RankTreesController {
     @RequestMapping(value = "/ranktrees",method = RequestMethod.GET)
     public Map<String,Object> rankTrees(){
         Map<String,Object>returnMap=new HashMap<String,Object>();
-        makeTreesService.rankTrees();
-        makeTreesService.getList();
-        makeTreesService.returnNameList();
-        returnMap.put("list",makeTreesService.getList());
+
+        returnMap.put("list",makeTreesService.rankTrees());
         returnMap.put("nameList",makeTreesService.returnNameList());
             return returnMap;
     }

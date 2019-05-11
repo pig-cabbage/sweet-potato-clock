@@ -10,7 +10,7 @@ public interface RankBetweenGroupService {
      *
      * @return
      */
-    void getRankBetweenGroupList();
+
 
     RankBetweenGroup getRankBetweenGroupById(Integer groupId);
 
@@ -19,16 +19,16 @@ public interface RankBetweenGroupService {
      *
      * @return
      */
-    void rankByDayAverageMinutes();
+    List<RankBetweenGroup> rankByDayAverageMinutes();
 
     /**
      * 依据一周人均打卡时长对获取RankBetweenGroup列表进行降序排序
      *
      * @return
      */
-    void rankByWeekAverageMinutes();
+    List<RankBetweenGroup> rankByWeekAverageMinutes();
 
-    List<RankBetweenGroup> getList();
+
 
     Boolean updateRankBetweenGroup(RankBetweenGroup rankBetweenGroup);
 
@@ -40,5 +40,7 @@ public interface RankBetweenGroupService {
      *
      * @return
      */
-    List<String>returnNameList();
+    List<String>returnNameListDay();
+
+    List<String>returnNameListWeek();
 }
