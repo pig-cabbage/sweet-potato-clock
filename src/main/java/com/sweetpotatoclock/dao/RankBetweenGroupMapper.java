@@ -1,9 +1,6 @@
 package com.sweetpotatoclock.dao;
 
 import com.sweetpotatoclock.entity.RankBetweenGroup;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 public interface RankBetweenGroupMapper {
@@ -46,9 +43,7 @@ public interface RankBetweenGroupMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(RankBetweenGroup record);
-
     void clearDayAverageMinutes();
 
     void clearWeekAverageMinutes();
-
 }

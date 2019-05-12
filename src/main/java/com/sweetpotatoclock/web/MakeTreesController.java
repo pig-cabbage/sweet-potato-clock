@@ -21,8 +21,8 @@ public class MakeTreesController {
     @RequestMapping(value = "/maketrees" ,method = RequestMethod.GET)
     public Map<String,Object>getMakeTreesByUserId(@RequestParam("userid") String userId){
         Map<String,Object>result=new HashMap<String,Object>();
-        MakeTrees makeTrees=makeTreesService.getMakeTreesByUserId(userId);
-        result.put("makeTrees",makeTrees);
+        result.put("list",makeTreesService.rankTrees());
+        result.put("namelist",makeTreesService.returnNameList());
         return result;
     }
 }

@@ -5,6 +5,7 @@ import com.sweetpotatoclock.dao.RankBetweenGroupMapper;
 import com.sweetpotatoclock.dao.RankInGroupMapper;
 import com.sweetpotatoclock.entity.GoalComplete;
 import com.sweetpotatoclock.entity.RankBetweenGroup;
+import com.sweetpotatoclock.entity.RankInGroup;
 import com.sweetpotatoclock.service.ClearDayRankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -37,7 +38,7 @@ public class ClearDayRankServiceimpl  implements ClearDayRankService{
     @Scheduled(cron="0 0 0 ? * *")
     @Override
     public void clearDayRecordInGroup(){
-        rankInGroupMapper.clearDayMinutes();
+       rankInGroupMapper.clearDayMinutes();
     }
 
     /**
@@ -63,7 +64,7 @@ public class ClearDayRankServiceimpl  implements ClearDayRankService{
         List<GoalComplete>list= goalCompleteMapper.selectAll();
         for(int i=0;i<list.size();++i){
             list.get(i).setIsClocked(0);
-            goalCompleteMapper.updateById(list.get(i));
+            goalCompleteMapper.updateByPrimaryKey(list.get(i));
         }
 
     }

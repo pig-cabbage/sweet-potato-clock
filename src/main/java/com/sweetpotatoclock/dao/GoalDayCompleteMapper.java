@@ -1,9 +1,6 @@
 package com.sweetpotatoclock.dao;
 
 import com.sweetpotatoclock.entity.GoalDayComplete;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 public interface GoalDayCompleteMapper {
@@ -22,6 +19,4 @@ public interface GoalDayCompleteMapper {
      * @mbg.generated
      */
     List<GoalDayComplete> selectAll();
-
-    List<GoalDayComplete> selectByUserId(String userId);
 }

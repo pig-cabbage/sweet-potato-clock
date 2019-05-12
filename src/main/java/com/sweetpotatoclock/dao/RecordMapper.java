@@ -1,9 +1,6 @@
 package com.sweetpotatoclock.dao;
 
 import com.sweetpotatoclock.entity.Record;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 public interface RecordMapper {
@@ -22,6 +19,4 @@ public interface RecordMapper {
      * @mbg.generated
      */
     List<Record> selectAll();
-
-    int deleteByGroupId(Integer groupId);
 }

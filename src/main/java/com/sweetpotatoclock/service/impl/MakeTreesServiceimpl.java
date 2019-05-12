@@ -68,6 +68,7 @@ public class MakeTreesServiceimpl implements MakeTreesService {
                 return t2.getArea().compareTo(t1.getArea());
             }
         });
+        System.out.println(list.toString());
         return list;
     }
     @Override

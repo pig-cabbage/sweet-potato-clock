@@ -1,9 +1,6 @@
 package com.sweetpotatoclock.dao;
 
 import com.sweetpotatoclock.entity.RankInGroup;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 public interface RankInGroupMapper {
@@ -23,13 +20,7 @@ public interface RankInGroupMapper {
      */
     List<RankInGroup> selectAll();
 
-    List<RankInGroup> selectListByGroupId(Integer groupId);
-
-    int updateById(RankInGroup record);
-
     void clearDayMinutes();
 
     void clearWeekMinutes();
-
-    int deleteByGroupId(Integer groupId);
 }
