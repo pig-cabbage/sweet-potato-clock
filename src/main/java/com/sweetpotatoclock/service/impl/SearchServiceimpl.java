@@ -20,7 +20,7 @@ public class SearchServiceimpl implements SearchService {
         List<Group>list_1=groupMapper.selectAll();
         for(int i=0;i<list_1.size();++i){
             Group item=list_1.get(i);
-            if(item.getGroupName().equals(groupName)){
+            if(item.getGroupName().equals(groupName)&&item.getIsPrivate()==0){
                 result.add(item);
             }
         }
